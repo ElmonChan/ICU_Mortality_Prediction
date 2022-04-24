@@ -5,7 +5,7 @@ import streamlit as st
 
 def load_data():
     ## {{ CODE HERE }} ##
-    cancer_df = pd.read_csv("https://github.com/ElmonChan/ICU_Mortality_Prediction/tree/main/706/data/demographic.csv")
+    cancer_df = pd.read_csv("../data/demographic.csv")
     return df
 df = load_data()
 
