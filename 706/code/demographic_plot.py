@@ -1,4 +1,4 @@
-""" import altair as alt
+import altair as alt
 import pandas as pd
 import streamlit as st
 
@@ -9,7 +9,7 @@ def load_data():
     return df
 df = load_data()
 
-sex = st.radio('GENDER', ('M', 'F'))
+"""sex = st.radio('GENDER', ('M', 'F'))
 subset = df[df["Sex"] == sex]
 
 chart1 = chart.mark_bar().encode(
@@ -23,5 +23,3 @@ chart1 = chart.mark_bar().encode(
 #.add_selection(age_selection)
 st.altair_chart(chart1, use_container_width=True) """
 
-import streamlit as st
-st.write("hello")
