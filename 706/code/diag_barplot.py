@@ -4,4 +4,6 @@ import pandas as pd
 
 df = pd.read_csv("/706/data/diags.csv")  # read a CSV file inside the 'data" folder next to 'app.py'
 
+print (df.head())
 st.write('hello world!')
+
