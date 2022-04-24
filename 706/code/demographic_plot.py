@@ -1,15 +1,15 @@
-""" import altair as alt
+import altair as alt
 import pandas as pd
 import streamlit as st
 
 
 def load_data():
     ## {{ CODE HERE }} ##
-    cancer_df = pd.read_csv("https://github.com/ElmonChan/ICU_Mortality_Prediction/tree/main/706/data/demographic.csv")
+    cancer_df = pd.read_csv("../data/demographic.csv")
     return df
 df = load_data()
 
-sex = st.radio('GENDER', ('M', 'F'))
+"""sex = st.radio('GENDER', ('M', 'F'))
 subset = df[df["Sex"] == sex]
 
 chart1 = chart.mark_bar().encode(
@@ -23,5 +23,3 @@ chart1 = chart.mark_bar().encode(
 #.add_selection(age_selection)
 st.altair_chart(chart1, use_container_width=True) """
 
-import streamline as st
-st.write("hello")
