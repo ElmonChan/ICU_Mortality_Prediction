@@ -4,8 +4,7 @@ import streamlit as st
 
 
 def load_data():
-    ## {{ CODE HERE }} ##
-    cancer_df = pd.read_csv("../data/demographic.csv")
+    df = pd.read_csv("../data/demographic.csv")
     return df
 df = load_data()
 
