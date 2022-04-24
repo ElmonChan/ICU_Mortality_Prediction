@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def load_data():
-    df = pd.read_csv("../data/demographic.csv")
+    df = pd.read_csv("706/data/demographic.csv")
     return df
 df = load_data()
 
