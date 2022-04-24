@@ -1,4 +1,4 @@
-import altair as alt
+""" import altair as alt
 import pandas as pd
 import streamlit as st
 
@@ -21,4 +21,7 @@ chart1 = chart.mark_bar().encode(
         title=f" population for different age groups",
     )
 #.add_selection(age_selection)
-st.altair_chart(chart1, use_container_width=True)
+st.altair_chart(chart1, use_container_width=True) """
+
+import streamline as st
+st.write("hello")
