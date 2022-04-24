@@ -8,8 +8,8 @@ def load_data():
     return df
 df = load_data()
 
-sex = st.radio('GENDER', ('M', 'F'))
-subset = df[df["Sex"] == sex]
+#sex = st.radio('GENDER', ('M', 'F'))
+#subset = df[df["Sex"] == sex]
 
 chart1 = chart.mark_bar().encode(
     x = alt.X('AGE_GROUP'),
