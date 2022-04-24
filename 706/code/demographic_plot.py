@@ -11,7 +11,7 @@ df = load_data()
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
-chart1 = chart.mark_bar().encode(
+chart = chart.mark_bar().encode(
     x = alt.X('AGE_GROUP'),
     y = alt.Y(sum(SUBJECT_ID)),
     # color = alt.Color('Age',sort=ages),
@@ -20,5 +20,5 @@ chart1 = chart.mark_bar().encode(
         title=f" population for different age groups",
     )
 #.add_selection(age_selection)
-st.altair_chart(chart1, use_container_width=True)
+st.altair_chart(chart, use_container_width=True)
 
