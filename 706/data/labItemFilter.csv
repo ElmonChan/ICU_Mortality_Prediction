@@ -1,0 +1,167 @@
+ITEMID,LABEL
+51362,"RBC, CSF"
+51382,Polys
+51383,"RBC, Joint Fluid"
+51384,"WBC, Joint Fluid"
+51419,Eosinophils
+51427,Lymphocytes
+51428,Macrophage
+51429,Mesothelial cells
+51431,Monos
+51434,Other Cell
+51436,Polys
+51438,"RBC, Other Fluid"
+51439,"WBC, Other Fluid"
+51444,Eosinophils
+51446,Lymphocytes
+51447,Macrophages
+51448,Mesothelial Cells
+51450,Monos
+51453,Other
+51455,Polys
+51457,"RBC, Pleural"
+51458,"WBC, Pleural"
+50803,"Calculated Bicarbonate, Whole Blood"
+50804,Calculated Total CO2
+50806,"Chloride, Whole Blood"
+50808,Free Calcium
+50809,Glucose
+50811,Hemoglobin
+50813,Lactate
+50818,pCO2
+50820,pH
+50821,pO2
+50822,"Potassium, Whole Blood"
+50824,"Sodium, Whole Blood"
+50852,% Hemoglobin A1c
+50856,Acetaminophen
+50861,Alanine Aminotransferase (ALT)
+50862,Albumin
+50863,Alkaline Phosphatase
+50864,Alpha-Fetoprotein
+50866,Ammonia
+50867,Amylase
+50868,Anion Gap
+50878,Asparate Aminotransferase (AST)
+50882,Bicarbonate
+50883,"Bilirubin, Direct"
+50885,"Bilirubin, Total"
+50889,C-Reactive Protein
+50890,C3
+50891,C4
+50893,"Calcium, Total"
+50900,Carcinoembyronic Antigen (CEA)
+50902,Chloride
+50905,"Cholesterol, LDL, Calculated"
+50906,"Cholesterol, LDL, Measured"
+50907,"Cholesterol, Total"
+50908,CK-MB Index
+50909,Cortisol
+50910,Creatine Kinase (CK)
+50911,"Creatine Kinase, MB Isoenzyme"
+50912,Creatinine
+50914,Cyclosporin
+50915,D-Dimer
+50917,Digoxin
+50922,Ethanol
+50924,Ferritin
+50927,Gamma Glutamyltransferase
+50929,Gentamicin
+50930,Globulin
+50931,Glucose
+50935,Haptoglobin
+50949,Immunoglobulin A
+50950,Immunoglobulin G
+50951,Immunoglobulin M
+50952,Iron
+50953,"Iron Binding Capacity, Total"
+50954,Lactate Dehydrogenase (LD)
+50956,Lipase
+50957,Lithium
+50960,Magnesium
+50963,NTproBNP
+50964,"Osmolality, Measured"
+50965,Parathyroid Hormone
+50966,Phenobarbital
+50967,Phenytoin
+50968,"Phenytoin, Free"
+50969,"Phenytoin, Percent Free"
+50970,Phosphate
+50971,Potassium
+50974,Prostate Specific Antigen
+50976,"Protein, Total"
+50978,Rapamycin
+50983,Sodium
+50986,tacroFK
+50993,Thyroid Stimulating Hormone
+50994,Thyroxine (T4)
+50995,"Thyroxine (T4), Free"
+50997,Tobramycin
+50998,Transferrin
+51000,Triglycerides
+51001,Triiodothyronine (T3)
+51002,Troponin I
+51003,Troponin T
+51006,Urea Nitrogen
+51007,Uric Acid
+51008,Valproic Acid
+51009,Vancomycin
+51010,Vitamin B12
+51018,"Total Protein, CSF"
+51070,"Albumin/Creatinine, Urine"
+51099,Protein/Creatinine Ratio
+51114,Eosinophils
+51116,Lymphocytes
+51117,Macrophage
+51118,Mesothelial Cell
+51120,Monocytes
+51123,Other
+51125,Polys
+51127,"RBC, Ascites"
+51128,"WBC, Ascites"
+51130,Absolute CD3 Count
+51131,Absolute CD4 Count
+51132,Absolute CD8 Count
+51143,Atypical Lymphocytes
+51144,Bands
+51146,Basophils
+51148,Blasts
+51181,CD4/CD8 Ratio
+51196,D-Dimer
+51200,Eosinophils
+51213,Fibrin Degradation Products
+51214,"Fibrinogen, Functional"
+51218,Granulocyte Count
+51221,Hematocrit
+51222,Hemoglobin
+51237,INR(PT)
+51244,Lymphocytes
+51245,"Lymphocytes, Percent"
+51248,MCH
+51249,MCHC
+51250,MCV
+51251,Metamyelocytes
+51254,Monocytes
+51255,Myelocytes
+51256,Neutrophils
+51257,Nucleated Red Cells
+51259,Other Cells
+51265,Platelet Count
+51269,Promyelocytes
+51274,PT
+51275,PTT
+51277,RDW
+51279,Red Blood Cells
+51283,"Reticulocyte Count, Automated"
+51284,"Reticulocyte Count, Manual"
+51288,Sedimentation Rate
+51297,Thrombin
+51300,WBC Count
+51301,White Blood Cells
+51479,Granular Casts
+51482,Hyaline Casts
+51491,pH
+51493,RBC
+51498,Specific Gravity
+51514,Urobilinogen
+51516,WBC
