@@ -13,7 +13,7 @@ subset = df[df["Sex"] == sex]
 
 chart1 = chart.mark_bar().encode(
     x = alt.X('AGE_GROUP'),
-    y = alt.Y(sum(SUBJECT_ID):Q),
+    y = alt.Y(sum(SUBJECT_ID)),
     # color = alt.Color('Age',sort=ages),
     opacity = alt.condition(age_selection, alt.value(1), alt.value(0.2)
     )).properties(
