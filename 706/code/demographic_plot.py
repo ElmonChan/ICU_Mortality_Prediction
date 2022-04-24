@@ -23,5 +23,5 @@ chart1 = chart.mark_bar().encode(
 #.add_selection(age_selection)
 st.altair_chart(chart1, use_container_width=True) """
 
-import streamline as st
+import streamlit as st
 st.write("hello")
