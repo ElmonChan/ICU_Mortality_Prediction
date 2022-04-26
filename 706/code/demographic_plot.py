@@ -20,7 +20,7 @@ bar = alt.Chart(df).mark_bar().encode(
         title= "population for different age groups",
     )
 #.add_selection(age_selection)
-st.altair_chart(chart1, use_container_width=True)
+#st.altair_chart(chart1, use_container_width=True)
 
 
 donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
