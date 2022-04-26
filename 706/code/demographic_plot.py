@@ -23,7 +23,7 @@ bar = alt.Chart(df).mark_bar().encode(
 #st.altair_chart(chart1, use_container_width=True)
 
 
-donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
+donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="sum", field='EXPIRE_FLAGE', type='quantitative'),
     color = alt.Color(field='AGE_GROUP', type='ordinal'),
     tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
