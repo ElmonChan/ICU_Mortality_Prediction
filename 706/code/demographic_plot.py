@@ -13,7 +13,7 @@ df = load_data()
 
 chart1 = alt.Chart(df).mark_bar().encode(
     x = alt.X('AGE_GROUP'),
-    y = alt.Y(count('SUBJECT_ID')),
+    y = alt.Y(count),
     # color = alt.Color('Age',sort=ages),
     #opacity = alt.condition(age_selection, alt.value(1), alt.value(0.2))
     ).properties(
