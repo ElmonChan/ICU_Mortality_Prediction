@@ -14,7 +14,7 @@ df = load_data()
 chart1 = alt.Chart(df).mark_bar().encode(
     x = alt.X('AGE_GROUP'),
     y = 'count(SUBJECT_ID)',
-    # color = alt.Color('Age',sort=ages),
+    color = alt.Color('GENDER'),
     #opacity = alt.condition(age_selection, alt.value(1), alt.value(0.2))
     ).properties(
         title= "population for different age groups",
