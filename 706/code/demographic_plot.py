@@ -11,7 +11,7 @@ df = load_data()
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
-chart1 = alt.Chart(df).mark_bar().encode(
+bar = alt.Chart(df).mark_bar().encode(
     x = alt.X('AGE_GROUP'),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('GENDER'),
@@ -22,3 +22,18 @@ chart1 = alt.Chart(df).mark_bar().encode(
 #.add_selection(age_selection)
 st.altair_chart(chart1, use_container_width=True)
 
+
+donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
+    theta = alt.Theta(aggregate="sum", field='EXPIRE_FLAGE', type='quantitative'),
+    color = alt.Color(field='AGE_GROUP', type='ordinal'),
+    tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
+).properties(
+    width=250
+)
+
+chart = alt.vconcat(bar, donut
+).resolve_scale(
+    color='independent'
+)
+
+chart
