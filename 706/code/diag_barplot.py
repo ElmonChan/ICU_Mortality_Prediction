@@ -41,7 +41,7 @@ range_ = ['red', 'green']
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
     y=alt.Y("ICD9_CODE"),
-    color = alt.Color('Patients', scale = alt.Scale (domain = domain, range = range_))
+    color = alt.Color('Death', scale = alt.Scale (domain = domain, range = range_))
   
 ).properties(
     title=f"ICD_Code",
