@@ -23,7 +23,7 @@ options = st.multiselect(
      'ICD9 Code',
      df["ICD9_CODE"].unique(),
      icd9_codes)
-subset = df[df["ICD9_CODE"].isin(icd9_codes)]
+subset = df[df["ICD9_CODE"].isin(options)]
 
 
 death = st.radio(
