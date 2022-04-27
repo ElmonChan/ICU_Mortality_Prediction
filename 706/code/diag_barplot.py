@@ -22,7 +22,7 @@ subset = df[df["Death"] == death]
 
 
 
-chart = alt.Chart(df).mark_rect().encode(
+chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X("ICD9_CODE"),
     y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
     
