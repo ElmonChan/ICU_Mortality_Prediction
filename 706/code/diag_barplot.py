@@ -13,15 +13,26 @@ def label_death (row):
 
 df['Death'] = df.apply (lambda row: label_death(row), axis=1)
 
+icd9_codes = [
+    "4019",
+    "4280",
+    "2724",
+]
+
+options = st.multiselect(
+     'ICD9 Code',
+     df["ICD9_CODE"].unique(),
+     icd9_codes)
+subset = df[df["icd9_codes"].isin(icd9_codes)]
 
 death = st.radio(
     "select patients",
     ('Expired', 'Survived', 'all'))
 
 if death == 'all':
-    subset = df
+    subset = subset
 else:
-    subset = df[df["Death"] == death]
+    subset = subset[subset["Death"] == death]
 
 
 
