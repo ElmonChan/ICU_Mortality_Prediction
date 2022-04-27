@@ -38,8 +38,8 @@ else:
 
 
 chart = alt.Chart(subset).mark_rect().encode(
-    x=alt.X("ICD9_CODE"),
-    y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
+    x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
+    y=alt.Y("ICD9_CODE"),
     color = alt.Color('Death'),
   
 ).properties(
