@@ -9,7 +9,7 @@ df = pd.read_csv("706/data/diags.csv")  # read a CSV file inside the 'data" fold
 st.write('hello world!')
 chart = alt.Chart(df).mark_rect().encode(
     x=alt.X("ICD9_CODE"),
-    y='count(SUBJECT_ID)',
+    y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
     
 ).properties(
     title=f"ICD_Code",
