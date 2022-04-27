@@ -23,7 +23,8 @@ options = st.multiselect(
      'ICD9 Code',
      df["ICD9_CODE"].unique(),
      icd9_codes)
-subset = df[df["icd9_codes"].isin(icd9_codes)]
+subset = df[df["ICD9_CODE"].isin(icd9_codes)]
+
 
 death = st.radio(
     "select patients",
@@ -40,8 +41,7 @@ chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X("ICD9_CODE"),
     y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
     color = alt.Color('Death'),
-
-    
+  
 ).properties(
     title=f"ICD_Code",
 )
