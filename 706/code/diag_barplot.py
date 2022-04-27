@@ -35,12 +35,13 @@ if death == 'all':
 else:
     subset = subset[subset["Death"] == death]
 
-
+domain = ('Expired', 'Survived')
+range_ = ['red', 'green']
 
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
     y=alt.Y("ICD9_CODE"),
-    color = alt.Color('Death'),
+    color = alt.Color('Patients', scale = alt.Scale (domain = domain, range = range_))
   
 ).properties(
     title=f"ICD_Code",
