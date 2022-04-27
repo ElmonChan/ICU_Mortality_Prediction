@@ -15,4 +15,6 @@ chart = alt.Chart(df).mark_rect().encode(
     title=f"ICD_Code",
 )
 
+st.altair_chart(chart, use_container_width=True)
+
 
