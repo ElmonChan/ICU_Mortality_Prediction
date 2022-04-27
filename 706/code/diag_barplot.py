@@ -4,7 +4,7 @@ import altair as alt
 
 
 
-df = pd.read_csv("706/data/diags.csv")  # read a CSV file inside the 'data" folder next to 'app.py'
+df = pd.read_csv("706/data/diags_new.csv")  # read a CSV file inside the 'data" folder next to 'app.py'
 
 def label_death (row):
    if row['EXPIRE_FLAG'] == 1 :
