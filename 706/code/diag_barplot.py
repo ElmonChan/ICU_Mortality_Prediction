@@ -15,7 +15,7 @@ df['Death'] = df.apply (lambda row: label_death(row), axis=1)
 
 
 death = st.radio(
-    "Death",
+    "select patients",
     ('Expired', 'Survived', 'all'))
 
 if death == 'all':
