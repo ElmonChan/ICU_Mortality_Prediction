@@ -12,7 +12,7 @@ chart = alt.Chart(df).mark_rect().encode(
     y='count(SUBJECT_ID)',
     
 ).properties(
-    #title=f"{cancer} mortality rates for {'males' if sex == 'M' else 'females'} in {year}",
+    title=f"ICD_Code",
 )
 
 
