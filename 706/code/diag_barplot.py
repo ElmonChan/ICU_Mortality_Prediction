@@ -16,9 +16,12 @@ df['Death'] = df.apply (lambda row: label_death(row), axis=1)
 
 death = st.radio(
     "Death",
-    ('Expired', 'Survived'))
+    ('Expired', 'Survived', 'all'))
 
-subset = df[df["Death"] == death]
+if death == 'all':
+    subset = df
+else:
+    subset = df[df["Death"] == death]
 
 
 
