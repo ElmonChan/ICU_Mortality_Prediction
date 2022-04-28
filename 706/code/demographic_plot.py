@@ -39,7 +39,9 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="count", field='EXPIRE_FLAGE', type='quantitative'),
     color = alt.Color(field='AGE_GROUP', type='ordinal'),
     tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
-)
+).properties(
+	width = 250
+    )
 
 chart = alt.vconcat(bar1, bar2, donut
 ).resolve_scale(
