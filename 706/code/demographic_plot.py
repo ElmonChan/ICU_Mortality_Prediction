@@ -24,16 +24,7 @@ bar1 = alt.Chart(df).mark_bar().encode(
     ).properties(
         title= "population for different age groups",
     )
-)
-bar2 = alt.Chart(df).mark_bar().encode(
-    x = 'EXPIRE_FLAG:N',
-    y = 'count(SUBJECT_ID)',
-    color = alt.Color('GENDER'),
-    tooltip = ['count(GENDER)', 'count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    column = 'AGE_GROUP'
-    ).properties(
-        title= "population for different age groups",
-    )
+
 #st.altair_chart(chart1, use_container_width=True)
 
 
