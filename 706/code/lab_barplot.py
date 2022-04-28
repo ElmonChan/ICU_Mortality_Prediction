@@ -5,7 +5,7 @@ import pandas as pd
 item = pd.read_csv('706/data/labItemFilter.csv')
 lab_df = pd.read_csv('706/data/labPatientFilter.csv')
 
-
+st.write("## Abnormal Lab frequency")
 st.write("## Abnormal Lab frequency")
 lab_chosen_item = st.multiselect('Lab',item.LABEL.unique(),
                                   default=['Polys','Monos','Macrophage'])
