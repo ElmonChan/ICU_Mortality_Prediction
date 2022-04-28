@@ -44,9 +44,8 @@ chart = alt.Chart(subset).mark_rect().encode(
     y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
   
 ).properties(
-    title="Number of Patients with Diagnosis",
-    width=100,
-    height=100,
+    title=f"Number of Patients with Diagnosis",
+    
 )
 
 st.altair_chart(chart)
