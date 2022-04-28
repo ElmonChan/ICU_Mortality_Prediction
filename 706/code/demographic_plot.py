@@ -16,18 +16,15 @@ status_selection = alt.selection_single(
 )
 
 bar = alt.Chart(df).mark_bar().encode(
-    x = alt.X('AGE_GROUP'),
+    x = alt.X('EXPIRE_FLAG'),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('GENDER'),
     tooltip = ['count(GENDER)', 'count(SUBJECT_ID)','AGE_GROUP'],
-    column = 'EXPIRE_FLAG'
+    column = 'AGE_GROUP'
     ).properties(
         title= "population for different age groups",
-    ).add_selection(
-        status_selection
-    ).properties(
-        width=150
     )
+
 #.add_selection(age_selection)
 #st.altair_chart(chart1, use_container_width=True)
 
