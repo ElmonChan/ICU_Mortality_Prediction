@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-
+[theme]
+base="dark"
+primaryColor="purple"
 
 df = pd.read_csv("706/data/diags_new.csv")  # read a CSV file inside the 'data" folder next to 'app.py'
 
@@ -27,7 +29,7 @@ subset = df[df["SHORT_TITLE"].isin(options)]
 
 death = st.radio(
     "select patients",
-    ('Expired', 'Survived', 'all'))
+    ('Expired', 'Survived', 'All'))
 
 if death == 'all':
     subset = subset
@@ -43,6 +45,8 @@ chart = alt.Chart(subset).mark_rect().encode(
   
 ).properties(
     title=f"Number of Patients with Diagnosis",
+    width=100,
+    height=100
 )
 
 st.altair_chart(chart)
