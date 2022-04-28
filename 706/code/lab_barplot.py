@@ -11,7 +11,7 @@ lab_chosen_item = st.multiselect('Lab',item.LABEL.unique(),
                                   default=['Polys','Monos','Macrophage'])
 lab_chosen_id = item.ITEMID[item.LABEL.isin(lab_chosen_item)]
 subset = lab_df[lab_df.ITEMID.isin(lab_chosen_id)]
-subset_agg = pd.merge(subset,item,on='')
+
 st.dataframe(subset)
 st.dataframe(item[item.ITEMID.isin(lab_chosen_id)])
 st.write(f"Dataframe size:{subset.shape}")
