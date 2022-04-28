@@ -20,7 +20,7 @@ bar1 = alt.Chart(df).mark_bar().encode(
     column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different age groups",
-    ).interactive(bind_y=TRUE)
+    ).interactive(bind_y=True)
 
 bar2 = alt.Chart(df).mark_bar().encode(
     x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
