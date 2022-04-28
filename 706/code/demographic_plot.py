@@ -16,11 +16,11 @@ status_selection = alt.selection_single(
 )
 
 bar1 = alt.Chart(df).mark_bar().encode(
-    x = alt.X('AGE_GROUP'),
+    x = 'EXPIRE_FLAG:N',
     y = 'count(SUBJECT_ID)',
     color = alt.Color('GENDER'),
     tooltip = ['count(GENDER)', 'count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    column = 'EXPIRE_FLAG:N'
+    column = 'AGE_GROUP'
     ).properties(
         title= "population for different age groups",
     )
