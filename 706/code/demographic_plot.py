@@ -12,7 +12,7 @@ df = load_data()
 #subset = df[df["Sex"] == sex]
 status_selection = alt.selection_single(
     fields=['EXPIRE_FLAG'],
-    bind='legend'
+    #bind='legend'
 )
 
 bar = alt.Chart(df).mark_bar().encode(
@@ -23,8 +23,9 @@ bar = alt.Chart(df).mark_bar().encode(
     ).properties(
         title= "population for different age groups",
     ).add_selection(
-    #####################
-    status_selection
+        status_selection
+    ).properties(
+        width=20
     )
 #.add_selection(age_selection)
 #st.altair_chart(chart1, use_container_width=True)
