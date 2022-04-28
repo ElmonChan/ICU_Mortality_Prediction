@@ -20,7 +20,7 @@ bar1 = alt.Chart(df).mark_bar().encode(
     y = 'count(SUBJECT_ID)',
     color = alt.Color('GENDER'),
     tooltip = ['count(GENDER)', 'count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    column = 'AGE_GROUP'
+    column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different age groups",
     )
