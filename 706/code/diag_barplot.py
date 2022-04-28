@@ -39,7 +39,7 @@ else:
 
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
-    y=alt.Y("Diagnosis"),
+    y=alt.Y("SHORT_TITLE"),
   
 ).properties(
     title=f"Number of Patients with Diagnosis",
