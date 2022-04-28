@@ -19,7 +19,7 @@ short_titles = [
 ]
 
 options = st.multiselect(
-     'Diagnosis',
+     'select diagnosis',
      df["SHORT_TITLE"].unique(),
      short_titles)
 subset = df[df["SHORT_TITLE"].isin(options)]
@@ -39,7 +39,7 @@ else:
 
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
-    y=alt.Y("SHORT_TITLE"),
+    y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
   
 ).properties(
     title=f"Number of Patients with Diagnosis",
