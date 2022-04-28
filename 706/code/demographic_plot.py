@@ -20,6 +20,7 @@ bar1 = alt.Chart(df).mark_bar().encode(
     column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different age groups",
+	width = 250
     )
 
 bar2 = alt.Chart(df).mark_bar().encode(
@@ -30,6 +31,7 @@ bar2 = alt.Chart(df).mark_bar().encode(
     column = alt.Column('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
+	width = 250
     )
 
 
@@ -39,7 +41,7 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
 )
 
-chart = alt.vconcat( bar2, donut
+chart = alt.vconcat(bar1, bar2, donut
 ).resolve_scale(
     color='independent'
 )
