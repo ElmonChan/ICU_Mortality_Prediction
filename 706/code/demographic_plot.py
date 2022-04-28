@@ -25,7 +25,7 @@ bar = alt.Chart(df).mark_bar().encode(
     ).add_selection(
         status_selection
     ).properties(
-        width=20
+        width=150
     )
 #.add_selection(age_selection)
 #st.altair_chart(chart1, use_container_width=True)
