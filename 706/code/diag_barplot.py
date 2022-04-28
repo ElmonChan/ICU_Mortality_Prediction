@@ -44,7 +44,7 @@ chart = alt.Chart(subset).mark_rect().encode(
     y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
   
 ).properties(
-    title=f"Number of Patients with Diagnosis",
+    title="Number of Patients with Diagnosis",
     width=100,
     height=100,
 )
