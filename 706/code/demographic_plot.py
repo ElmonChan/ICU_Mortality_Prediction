@@ -39,7 +39,7 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
 )
 
-chart = alt.vconcat(bar1, bar2, donut
+chart = alt.vconcat( bar2, donut
 ).resolve_scale(
     color='independent'
 )
