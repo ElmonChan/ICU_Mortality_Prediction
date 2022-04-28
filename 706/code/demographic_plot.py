@@ -16,7 +16,7 @@ status_selection = alt.selection_single(
 )
 
 bar1 = alt.Chart(df).mark_bar().encode(
-    x = 'EXPIRE_FLAG:N',
+    x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('GENDER'),
     tooltip = ['count(GENDER)', 'count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
