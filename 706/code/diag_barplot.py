@@ -13,17 +13,16 @@ def label_death (row):
 
 df['Death'] = df.apply (lambda row: label_death(row), axis=1)
 
-icd9_codes = [
-    "4019",
-    "4280",
-    "2724",
+short_titles = [
+    "Hypertension NOS",
+    "Depressive disorder NEC",
 ]
 
 options = st.multiselect(
-     'ICD9 Code',
-     df["ICD9_CODE"].unique(),
-     icd9_codes)
-subset = df[df["ICD9_CODE"].isin(options)]
+     'Diagnosis',
+     df["SHORT_TITLE"].unique(),
+     short_titles)
+subset = df[df["SHORT_TITLE"].isin(options)]
 
 
 death = st.radio(
@@ -40,10 +39,10 @@ else:
 
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
-    y=alt.Y("ICD9_CODE"),
+    y=alt.Y("Diagnosis"),
   
 ).properties(
-    title=f"ICD_Code",
+    title=f"Number of Patients with Diagnosis",
 )
 
 st.altair_chart(chart)
