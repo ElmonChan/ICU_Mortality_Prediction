@@ -44,12 +44,7 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     width=250
 )
 
-bar = alt.vconcat(bar1, bar2
-).resolve_scale(
-    color='independent'
-)
-
-chart = alt.vconcat(bar, donut
+chart = alt.vconcat(bar1, bar2, donut
 ).resolve_scale(
     color='independent'
 )
