@@ -10,6 +10,10 @@ df = load_data()
 
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
+status_selection = alt.selection_single(
+    fields=['EXPIRE_FLAG'],
+    bind='legend'
+)
 
 bar = alt.Chart(df).mark_bar().encode(
     x = alt.X('AGE_GROUP'),
@@ -18,7 +22,11 @@ bar = alt.Chart(df).mark_bar().encode(
     tooltip = ['count(GENDER)', 'count(SUBJECT_ID)','AGE_GROUP']
     ).properties(
         title= "population for different age groups",
+    ).add_selection(
+    #####################
+    status_selection
     )
+)
 #.add_selection(age_selection)
 #st.altair_chart(chart1, use_container_width=True)
 
