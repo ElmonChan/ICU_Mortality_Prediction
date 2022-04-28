@@ -24,7 +24,7 @@ bar1 = alt.Chart(df).mark_bar().encode(
     ).properties(
         title= "population for different age groups",
     )
-
+)
 bar2 = alt.Chart(df).mark_bar().encode(
     x = 'EXPIRE_FLAG:N',
     y = 'count(SUBJECT_ID)',
@@ -44,8 +44,6 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
 ).properties(
     width=250
 )
-
-
 
 chart = alt.vconcat(bar1, donut
 ).resolve_scale(
