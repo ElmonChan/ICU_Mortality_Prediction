@@ -44,7 +44,6 @@ chart = alt.Chart(subset).mark_rect().encode(
 ).properties(
     title=f"Number of Patients with Diagnosis",
     width=1000,
-    height=1000,
 )
 
 st.altair_chart(chart)
