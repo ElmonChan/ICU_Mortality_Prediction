@@ -24,11 +24,10 @@ death = st.radio(
     "select patients",
     ('Expired', 'Survived', 'All'))
 
-if death == 'all':
-    subset = subset
-elif death == 'Expired':
+
+if death == 'Expired':
     subset = subset[subset["EXPIRE_FLAG"] == 1]
-else: 
+elif death == 'Survived': 
     subset = subset[subset["EXPIRE_FLAG"] == 0]
 
 barchart = alt.Chart(subset).mark_bar().encode(
