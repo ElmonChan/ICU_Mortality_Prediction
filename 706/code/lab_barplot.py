@@ -8,14 +8,17 @@ lab_df = pd.read_csv('706/data/labPatientFilter.csv')
 combined = lab_df.merge (item, on ='ITEMID', how = 'left')
 
 st.write("## Abnormal Lab frequency")
-lab_chosen_item = st.multiselect('Lab',item.LABEL.unique(),
+lab_chosen_item = st.multiselect('choose lab',item.LABEL.unique(),
                                   default=['Polys','Monos','Macrophage'])
-lab_chosen_id = item.ITEMID[item.LABEL.isin(lab_chosen_item)]
-subset = lab_df[lab_df.ITEMID.isin(lab_chosen_id)]
+#lab_chosen_id = item.ITEMID[item.LABEL.isin(lab_chosen_item)]
+#subset = lab_df[lab_df.ITEMID.isin(lab_chosen_id)]
+#subset = df[df["SHORT_TITLE"].isin(options)]
 
-st.dataframe(subset)
-st.dataframe(item[item.ITEMID.isin(lab_chosen_id)])
-st.write(f"Dataframe size:{subset.shape}")
+subset = combined[combined["LABEL"].isin(lab_chosen_item)]
+
+#st.dataframe(subset)
+#st.dataframe(item[item.ITEMID.isin(lab_chosen_id)])
+#st.write(f"Dataframe size:{subset.shape}")
 
 barchart = alt.Chart(subset).mark_bar().encode(
     x = alt.X('ITEMID:N',title='ITEM'),
