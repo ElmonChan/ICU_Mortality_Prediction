@@ -21,7 +21,11 @@ subset = combined[combined["LABEL"].isin(lab_chosen_item)]
 #st.write(f"Dataframe size:{subset.shape}")
 
 barchart = alt.Chart(subset).mark_bar().encode(
-    x = alt.X('ITEMID:N',title='ITEM'),
-    y = alt.Y('SUBJECT_ID',title='Patients'),
+
+    x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
+    y=alt.Y("LABEL", title = 'lab'),
+
+    #x = alt.X('ITEMID:N',title='ITEM'),
+    #y = alt.Y('SUBJECT_ID',title='Patients'),
 )
 st.altair_chart(barchart,use_container_width=True)
