@@ -31,8 +31,11 @@ death = st.radio(
 
 if death == 'all':
     subset = subset
-else:
-    subset = subset[subset["Death"] == death]
+elif death == 'Expired':
+    subset = subset[subset["EXPIRE_FLAG"] == '1']
+else: 
+    subset = subset[subset["EXPIRE_FLAG"] == '0']
+
 
 #domain = ('Expired', 'Survived')
 #range_ = ['red', 'green']
