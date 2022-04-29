@@ -11,16 +11,27 @@ df = load_data()
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
-bar = alt.Chart(df).mark_bar().encode(
-    x = alt.X('AGE_GROUP'),
+
+bar1 = alt.Chart(df).mark_bar().encode(
+    x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     y = 'count(SUBJECT_ID)',
-    color = alt.Color('GENDER'),
-    tooltip = ['count(GENDER)', 'count(SUBJECT_ID)','AGE_GROUP']
+    color = alt.Color('EXPIRE_FLAG:N'),
+    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
+    column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different age groups",
+    ).interactive(bind_y=True)
+
+bar2 = alt.Chart(df).mark_bar().encode(
+    x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+    y = 'count(SUBJECT_ID)',
+    color = alt.Color('EXPIRE_FLAG:N'),
+    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
+    column = alt.Column('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+    ).properties(
+        title= "population for different race groups",
+	width = 250
     )
-#.add_selection(age_selection)
-#st.altair_chart(chart1, use_container_width=True)
 
 
 donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
@@ -28,12 +39,13 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     color = alt.Color(field='AGE_GROUP', type='ordinal'),
     tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
 ).properties(
-    width=250
-)
+	width = 250
+    )
 
-chart = alt.vconcat(bar, donut
-).resolve_scale(
-    color='independent'
-)
+bar1 & bar2.properties(df.sample(df.shape[0]))
+#chart = alt.vconcat(bar1, bar2.properties(data=df.sample(sdf.shape[0]))
+#).resolve_scale(
+#    color='independent'
+#)
 
-chart
+#chart
