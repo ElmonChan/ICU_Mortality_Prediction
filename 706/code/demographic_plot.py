@@ -30,7 +30,6 @@ bar2 = alt.Chart(df).mark_bar().encode(
     column = alt.Column('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
-	width = 250
     )
 
 
@@ -43,9 +42,10 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     )
 
 #bar1 & bar2.properties(df.sample(df.shape[0]))
-chart = alt.vconcat(bar2, bar1
+chart = alt.vconcat(bar1, donut
 ).resolve_scale(
     color='independent'
 )
 
 chart
+bar2
