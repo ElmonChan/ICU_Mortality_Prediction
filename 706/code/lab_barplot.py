@@ -20,6 +20,17 @@ subset = combined[combined["LABEL"].isin(lab_chosen_item)]
 #st.dataframe(item[item.ITEMID.isin(lab_chosen_id)])
 #st.write(f"Dataframe size:{subset.shape}")
 
+death = st.radio(
+    "select patients",
+    ('Expired', 'Survived', 'All'))
+
+if death == 'all':
+    subset = subset
+elif death == 'Expired':
+    subset = subset[subset["EXPIRE_FLAG"] == 1]
+else: 
+    subset = subset[subset["EXPIRE_FLAG"] == 0]
+
 barchart = alt.Chart(subset).mark_bar().encode(
 
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
