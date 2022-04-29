@@ -24,7 +24,6 @@ death = st.radio(
     "select patients",
     ('Expired', 'Survived', 'All'))
 
-
 if death == 'Expired':
     subset = subset[subset["EXPIRE_FLAG"] == 1]
 elif death == 'Survived': 
