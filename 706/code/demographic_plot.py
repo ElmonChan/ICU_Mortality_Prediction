@@ -48,4 +48,4 @@ chart = alt.vconcat(bar1, donut
     color='independent'
 )
 
-#chart
+chart
