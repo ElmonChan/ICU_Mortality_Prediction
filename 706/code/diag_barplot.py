@@ -42,6 +42,7 @@ elif death == 'Survived':
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
     y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
+    color = ('Death')
   
 ).properties(
     title=f"Number of Patients with Diagnosis",
