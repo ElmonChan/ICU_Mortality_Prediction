@@ -13,6 +13,9 @@ def label_death (row):
 
 df['Death'] = df.apply (lambda row: label_death(row), axis=1)
 
+st.write("## Diagnosis frequency")
+
+
 short_titles = [
     "Hypertension NOS",
     "Depressive disorder NEC",
@@ -44,7 +47,7 @@ chart = alt.Chart(subset).mark_rect().encode(
     #color = ('Death')
   
 ).properties(
-    title=f"Number of Patients with Diagnosis",
+    #title=f"Number of Patients with Diagnosis",
     width=800,
 )
 
