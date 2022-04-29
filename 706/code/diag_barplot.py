@@ -48,6 +48,6 @@ chart = alt.Chart(subset).mark_rect().encode(
     width=800,
 )
 
-st.altair_chart(chart)
+st.altair_chart(chart, use_container_width=True)
 
 
