@@ -28,6 +28,9 @@ if death == 'Expired':
     subset = subset[subset["EXPIRE_FLAG"] == 1]
 elif death == 'Survived': 
     subset = subset[subset["EXPIRE_FLAG"] == 0]
+else: 
+    subset = subset[subset["EXPIRE_FLAG"] == 1 or 0]
+
 
 barchart = alt.Chart(subset).mark_bar().encode(
 
