@@ -29,7 +29,6 @@ death = st.radio(
     "select patients",
     ('Expired', 'Survived', 'All'))
 
-
 if death == 'Expired':
     subset = subset[subset["EXPIRE_FLAG"] == 1]
 elif death == 'Survived': 
@@ -42,7 +41,7 @@ elif death == 'Survived':
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
     y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
-    color = ('Death')
+    #color = ('Death')
   
 ).properties(
     title=f"Number of Patients with Diagnosis",
