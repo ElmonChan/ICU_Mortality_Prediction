@@ -13,6 +13,9 @@ def label_death (row):
 
 df['Death'] = df.apply (lambda row: label_death(row), axis=1)
 
+st.write("## Diagnosis frequency")
+
+
 short_titles = [
     "Hypertension NOS",
     "Depressive disorder NEC",
@@ -29,10 +32,11 @@ death = st.radio(
     "select patients",
     ('Expired', 'Survived', 'All'))
 
-if death == 'all':
-    subset = subset
-else:
-    subset = subset[subset["Death"] == death]
+if death == 'Expired':
+    subset = subset[subset["EXPIRE_FLAG"] == 1]
+elif death == 'Survived': 
+    subset = subset[subset["EXPIRE_FLAG"] == 0]
+
 
 #domain = ('Expired', 'Survived')
 #range_ = ['red', 'green']
@@ -40,12 +44,13 @@ else:
 chart = alt.Chart(subset).mark_rect().encode(
     x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
     y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
+    #color = ('Death')
   
 ).properties(
-    title=f"Number of Patients with Diagnosis",
+    #title=f"Number of Patients with Diagnosis",
     width=800,
 )
 
-st.altair_chart(chart)
+st.altair_chart(chart, use_container_width=True)
 
 
