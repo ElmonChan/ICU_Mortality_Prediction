@@ -34,7 +34,9 @@ bar1 = base.mark_bar().encode(
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
     column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
-    ).properties(
+    ).add_selector(
+	expire_select
+)properties(
         title= "population for different age groups",
     ).interactive(bind_y=True)
 
