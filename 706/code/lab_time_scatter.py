@@ -29,7 +29,7 @@ chart = alt.Chart(subset).mark_circle(size=20).encode(
     y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
     color='Survival',
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
-).interactive()
+)
 
 chart + chart.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
 
