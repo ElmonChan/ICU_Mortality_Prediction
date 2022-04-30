@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn import preprocessing
 
 
+
 st.write("## Lab results Before ICU admission")
 
 icu_labs = pd.read_csv('706/data/icu_lab.csv')
