@@ -20,6 +20,7 @@ values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
 df['RACE'] = np.select(conditions, values)
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
+print(df['RACE'])
 
 
 bar1 = alt.Chart(df).mark_bar().encode(
