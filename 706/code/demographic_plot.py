@@ -18,7 +18,7 @@ conditions = [
     ]
 values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
 df['RACE'] = np.select(conditions, values)
-df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/')[0])
+df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/|-| ')[0])
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
