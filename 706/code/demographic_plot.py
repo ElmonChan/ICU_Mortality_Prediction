@@ -18,6 +18,7 @@ conditions = [
     ]
 values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
 df['RACE'] = np.select(conditions, values)
+df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/')[0])
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
@@ -33,11 +34,11 @@ bar1 = alt.Chart(df).mark_bar().encode(
     ).interactive(bind_y=True)
 
 bar2 = alt.Chart(df).mark_bar().encode(
-    y = alt.Y('RACE',title=None, axis=alt.Axis(labels=False)),
+    y = alt.Y('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    row = alt.Row('RACE', header = alt.Header(labelOrient = "bottom"))
+    row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
     )
