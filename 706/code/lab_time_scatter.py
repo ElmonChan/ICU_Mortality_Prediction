@@ -24,7 +24,7 @@ elif death == 'Survived':
 chart = alt.Chart(subset).mark_circle(size=20).encode(
     x='time_to_icu_mins',
     y='VALUENUM',
-    #color='Origin',
+    color='Expire_Flag',
     #tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
 ).interactive()
 
