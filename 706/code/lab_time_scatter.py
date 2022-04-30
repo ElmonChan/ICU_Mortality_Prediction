@@ -1,6 +1,8 @@
 import altair as alt
 import streamlit as st
 import pandas as pd
+from sklearn import preprocessing
+
 
 st.write("## Lab results Before ICU admission")
 
@@ -24,10 +26,13 @@ elif death == 'Survived':
 
 unit = subset["VALUEUOM"].iloc[0]
 
+std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
+subset = std_scale.transform(subset[['VALUENUM']])
+
 
 chart = alt.Chart(subset).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
-    y= alt.Y ('VALUENUM', title = f"Value ({unit})", scale=alt.Scale(type='log', base = 2)),
+    y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
     color='Survival',
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
 ).interactive()
