@@ -27,8 +27,6 @@ expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdow
 #subset = df[df["Sex"] == sex]
 
 base = alt.Chart(df
-).transform_filter(
-    expire_select
 )
 
 
