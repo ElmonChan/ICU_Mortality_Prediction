@@ -31,6 +31,7 @@ chart = alt.Chart(subset).mark_circle(size=20).encode(
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
 ).interactive()
 
+
 #chart = chart + chart.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
 
 st.altair_chart(chart, use_container_width=True)
