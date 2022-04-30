@@ -36,7 +36,7 @@ bar1 = base.mark_bar().encode(
     column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).add_selector(
 	expire_select
-)properties(
+).properties(
         title= "population for different age groups",
     ).interactive(bind_y=True)
 
