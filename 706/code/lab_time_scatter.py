@@ -6,11 +6,11 @@ st.write('Hello world!')
 
 icu_labs = pd.read_csv('706/data/icu_lab.csv')
 
-options = st.selectbox(
+option = st.selectbox(
      'select lab',
      icu_labs.LABEL.unique())
 
-subset = icu_labs[icu_labs["LABEL"].isin(options)]
+subset = icu_labs[icu_labs["LABEL"] == option]
 
 death = st.radio(
     "select patients",
