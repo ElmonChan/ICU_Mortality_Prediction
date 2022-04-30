@@ -17,9 +17,9 @@ death = st.radio(
     ('Expired', 'Survived', 'All'))
 
 if death == 'Expired':
-    subset = subset[subset["EXPIRE_FLAG"] == 1]
+    subset = subset[subset["Expire_Flag"] == 1]
 elif death == 'Survived': 
-    subset = subset[subset["EXPIRE_FLAG"] == 0]
+    subset = subset[subset["Expire_Flag"] == 0]
 
 alt.Chart(subset).mark_circle(size=20).encode(
     x='time_to_icu_mins',
