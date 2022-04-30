@@ -59,5 +59,5 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
 
 
 bar1
-Donut
+donut
 bar2
