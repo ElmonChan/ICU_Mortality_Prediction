@@ -38,6 +38,8 @@ bar1 = base.mark_bar().encode(
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
     column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+    ).add_selection(
+        expire_select
     ).properties(
         title= "population for different age groups",
     ).interactive(bind_y=True)
@@ -48,6 +50,8 @@ bar2 = base.mark_bar().encode(
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','EXPIRE_FLAG'],
     row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+    ).add_selection(
+	expire_select
     ).properties(
         title= "population for different race groups",
     )
@@ -57,8 +61,8 @@ donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
     color = alt.Color(field='GENDER', type='ordinal'),
     tooltip = ['sum(SUBJECT_ID)', 'AGE_GROUP']
-    ).add_selection(
-        expire_select
+    )transform_filter(
+        expire_selection
     ).properties(
 	title= "proportion of expired patients in gender",
 	#width = 250
