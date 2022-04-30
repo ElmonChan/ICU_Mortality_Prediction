@@ -6,6 +6,14 @@ st.write('Hello world!')
 
 icu_labs = pd.read_csv('706/data/icu_lab.csv')
 
+def label_death (row):
+   if row['EXPIRE_FLAG'] == 1 :
+      return 'Expired'
+   return 'Survived'
+
+icu_labs['Death'] = icu_labs.apply (lambda row: label_death(row), axis=1)
+
+
 option = st.selectbox(
      'select lab',
      icu_labs.LABEL.unique())
@@ -24,7 +32,7 @@ elif death == 'Survived':
 chart = alt.Chart(subset).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU in mins'),
     y='VALUENUM',
-    color='Expire_Flag',
+    color='Death',
     #tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
 ).interactive()
 
