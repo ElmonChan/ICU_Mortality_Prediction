@@ -20,12 +20,15 @@ def load_data():
     return df
 df = load_data()
 
-
+#expire = [0,1]
+#expire_dropdown = alt.binding_select(options=expire)
+#expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdown,  #init={'EXPIRE':expire[0]})
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
+base = alt.Chart(df)
 
-bar1 = alt.Chart(df).mark_bar().encode(
+bar1 = base.mark_bar().encode(
     x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
@@ -35,22 +38,22 @@ bar1 = alt.Chart(df).mark_bar().encode(
         title= "population for different age groups",
     ).interactive(bind_y=True)
 
-bar2 = alt.Chart(df).mark_bar().encode(
+bar2 = base.mark_bar().encode(
     y = alt.Y('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
-    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
+    tooltip = ['count(SUBJECT_ID)','EXPIRE_FLAG'],
     row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
     )
 
 
-donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
-    theta = alt.Theta(aggregate="count", field='EXPIRE_FLAGE', type='quantitative'),
+donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
+    theta = alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
     color = alt.Color(field='GENDER', type='ordinal'),
-    tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
-).properties(
+    tooltip = ['sum(SUBJECT_ID)', 'AGE_GROUP']
+    ).properties(
 	title= "proportion of expired patients in gender",
 	#width = 250
     )
