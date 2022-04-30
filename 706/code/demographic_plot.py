@@ -6,7 +6,7 @@ import numpy as np
 
 def load_data():
     df = pd.read_csv("706/data/demographic.csv")
-    df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/|-| ')[0])
+    df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.s.replace('-', ' ').replace(', ', ' ').replace('/',' ').split()[0])
     return df
 df = load_data()
 
