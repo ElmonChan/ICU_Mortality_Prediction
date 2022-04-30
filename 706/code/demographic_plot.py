@@ -28,8 +28,8 @@ expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdow
 
 base = alt.Chart(df)
 
-bar1 = base.encode(
-    x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+bar1 = base.mark_bar().encode(
+    x = alt.X('AGE_GROUP',title=None, axis=alt.Axis(labels=False)),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
