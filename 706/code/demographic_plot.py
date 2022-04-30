@@ -6,19 +6,11 @@ import numpy as np
 
 def load_data():
     df = pd.read_csv("706/data/demographic.csv")
+    df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/|-| ')[0])
     return df
 df = load_data()
 
-conditions = [
-    ('WHITE' in df['ETHNICITY']),
-    ('BLACK' in df['ETHNICITY']),
-    ('ASIAN' in df['ETHNICITY']),
-    ('UNKNOWN' in df['ETHNICITY']),
-    ('UNKNOWN' not in df['ETHNICITY']) & ('ASIAN' not in df['ETHNICITY']) & ('BLACK' not in df['ETHNICITY']) & ('WHITE' not in df['ETHNICITY'])
-    ]
-values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
-df['RACE'] = np.select(conditions, values)
-df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/|-| ')[0])
+
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
