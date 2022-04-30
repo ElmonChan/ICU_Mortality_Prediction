@@ -20,9 +20,9 @@ def load_data():
     return df
 df = load_data()
 
-expire = [0,1]
-expire_dropdown = alt.binding_select(options=expire)
-expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdown,  init={'EXPIRE':expire[0]})
+#expire = [0,1]
+#expire_dropdown = alt.binding_select(options=expire)
+#expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdown,  #init={'EXPIRE':expire[0]})
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
