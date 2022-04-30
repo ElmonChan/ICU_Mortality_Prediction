@@ -13,7 +13,7 @@ conditions = [
     (df['ETHNICITY'].contains('BLACK')),
     (df['ETHNICITY'].contains('ASIAN')),
     (df['ETHNICITY'].contains('UNKNOWN')),
-    (!df['ETHNICITY'].contains('UNKNOWN')) & (!df['ETHNICITY'].contains('ASIAN')) & (!df['ETHNICITY'].contains('BLACK')) & (!df['ETHNICITY'].contains('WHITE'))
+    ('UNKNOWN' not in df['ETHNICITY']) & ('ASIAN' not in df['ETHNICITY']) & ('BLACK' not in df['ETHNICITY']) & ('WHITE' not in df['ETHNICITY'])
     ]
 values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
 df['RACE'] = np.select(conditions, values)
