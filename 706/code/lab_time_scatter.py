@@ -22,10 +22,10 @@ elif death == 'Survived':
     subset = subset[subset["Expire_Flag"] == 0]
 
 chart = alt.Chart(subset).mark_circle(size=20).encode(
-    x='time_to_icu_mins',
+    x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU in mins'),
     y='VALUENUM',
     color='Expire_Flag',
     #tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
 ).interactive()
 
-st.altair_chart(chart)
+st.altair_chart(chart, use_container_width=True)
