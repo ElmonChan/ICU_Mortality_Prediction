@@ -26,8 +26,13 @@ expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdow
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
+base = alt.Chart(df
+).transform_filter(
+    expire_select
+)
 
-bar1 = alt.Chart(df).mark_bar().encode(
+
+bar1 = base.mark_bar().encode(
     x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
@@ -37,7 +42,7 @@ bar1 = alt.Chart(df).mark_bar().encode(
         title= "population for different age groups",
     ).interactive(bind_y=True)
 
-bar2 = alt.Chart(df).mark_bar().encode(
+bar2 = base.mark_bar().encode(
     y = alt.Y('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
@@ -48,10 +53,10 @@ bar2 = alt.Chart(df).mark_bar().encode(
     )
 
 
-donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
+donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
     color = alt.Color(field='GENDER', type='ordinal'),
-    tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
+    tooltip = ['sum(SUBJECT_ID)', 'AGE_GROUP']
     ).add_selection(
         expire_select
     ).properties(
