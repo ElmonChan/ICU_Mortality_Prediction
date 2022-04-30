@@ -61,7 +61,7 @@ donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
     color = alt.Color(field='GENDER', type='ordinal'),
     tooltip = ['sum(SUBJECT_ID)', 'AGE_GROUP']
-    )transform_filter(
+    ).transform_filter(
         expire_selection
     ).properties(
 	title= "proportion of expired patients in gender",
