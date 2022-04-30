@@ -1,7 +1,7 @@
 import altair as alt
 import streamlit as st
 import pandas as pd
-from sklearn import preprocessing
+#from sklearn import preprocessing
 
 
 
@@ -28,8 +28,8 @@ elif death == 'Survived':
 
 unit = subset["VALUEUOM"].iloc[0]
 
-std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
-subset = std_scale.transform(subset[['VALUENUM']])
+#std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
+#subset = std_scale.transform(subset[['VALUENUM']])
 
 
 chart = alt.Chart(subset).mark_circle(size=20).encode(
