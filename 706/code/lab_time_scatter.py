@@ -11,3 +11,12 @@ options = st.selectbox(
      icu_labs.LABEL.unique())
 
 subset = icu_labs[icu_labs["LABEL"].isin(options)]
+
+death = st.radio(
+    "select patients",
+    ('Expired', 'Survived', 'All'))
+
+if death == 'Expired':
+    subset = subset[subset["EXPIRE_FLAG"] == 1]
+elif death == 'Survived': 
+    subset = subset[subset["EXPIRE_FLAG"] == 0]
