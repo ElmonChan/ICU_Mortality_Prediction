@@ -6,7 +6,7 @@ import numpy as np
 
 def load_data():
     df = pd.read_csv("706/data/demographic.csv")
-    df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.replace('-', ' ').replace(', ', ' ').replace('/',' ').split()[0])
+    df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('-|/')[0])
     df.replace('UNALBE', 'UNKNOWN')
     df[df['ETHNICITY'] == 'PATIENT']['ETHNICITY'] = 'UNKNOWN'
     df[df['ETHNICITY'] == 'MIDDLE']['ETHNICITY'] = 'OTHER'
