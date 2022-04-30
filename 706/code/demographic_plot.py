@@ -7,7 +7,7 @@ import numpy as np
 def load_data():
     df = pd.read_csv("706/data/demographic.csv")
     df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.replace('-', ' ').replace(', ', ' ').replace('/',' ').split()[0])
-    df[df['ETHNICITY'] == 'UNALBE']['ETHNICITY'] = df[df['ETHNICITY'] == 'UNALBE']['ETHNICITY'].apply('UNKNOWN')
+    df.replace('UNALBE', 'UNKNOWN')
     df[df['ETHNICITY'] == 'PATIENT']['ETHNICITY'] = 'UNKNOWN'
     df[df['ETHNICITY'] == 'MIDDLE']['ETHNICITY'] = 'OTHER'
     df[df['ETHNICITY'] == 'MULTI']['ETHNICITY'] = 'OTHER'
