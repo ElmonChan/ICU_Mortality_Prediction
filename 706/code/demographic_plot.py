@@ -8,6 +8,15 @@ def load_data():
     return df
 df = load_data()
 
+conditions = [
+    (df['ETHNICITY'].contains('WHITE')),
+    (df['ETHNICITY'].contains('BLACK')),
+    (df['ETHNICITY'].contains('ASIAN')),
+    (df['ETHNICITY'].contains('UNKNOWN')),
+    ('UNKNOWN' not in df['ETHNICITY']) & ('ASIAN' not in df['ETHNICITY']) & ('BLACK' not in df['ETHNICITY']) & ('WHITE' not in df['ETHNICITY'])
+    ]
+values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
+df['RACE'] = np.select(conditions, values)
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
@@ -27,7 +36,7 @@ bar2 = alt.Chart(df).mark_bar().encode(
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+    row = alt.Row('RACE', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
     )
