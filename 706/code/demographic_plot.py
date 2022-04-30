@@ -51,6 +51,7 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     color = alt.Color(field='GENDER', type='ordinal'),
     tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
 ).properties(
+	title= "proportion of expired patients in gender",
 	width = 250
     )
 
