@@ -20,7 +20,6 @@ values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
 df['RACE'] = np.select(conditions, values)
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
-print(df['RACE'])
 
 
 bar1 = alt.Chart(df).mark_bar().encode(
@@ -34,7 +33,7 @@ bar1 = alt.Chart(df).mark_bar().encode(
     ).interactive(bind_y=True)
 
 bar2 = alt.Chart(df).mark_bar().encode(
-    y = alt.Y('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+    y = alt.Y('RACE',title=None, axis=alt.Axis(labels=False)),
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
