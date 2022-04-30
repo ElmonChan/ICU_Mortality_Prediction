@@ -20,7 +20,9 @@ def load_data():
     return df
 df = load_data()
 
-
+expire = [0,1]
+expire_dropdown = alt.binding_select(options=expire)
+expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdown, name="Select",  init={'EXPIRE':expire[0]})
 #sex = st.radio('GENDER', ('M', 'F'))
 #subset = df[df["Sex"] == sex]
 
@@ -31,6 +33,8 @@ bar1 = alt.Chart(df).mark_bar().encode(
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
     column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+    ).add_selection(
+        expire_select
     ).properties(
         title= "population for different age groups",
     ).interactive(bind_y=True)
@@ -39,7 +43,7 @@ bar2 = alt.Chart(df).mark_bar().encode(
     y = alt.Y('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
-    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
+    tooltip = ['count(SUBJECT_ID)','EXPIRE_FLAG'],
     row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
