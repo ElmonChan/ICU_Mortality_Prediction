@@ -26,7 +26,7 @@ unit = subset["VALUEUOM"].iloc[0]
 
 chart = alt.Chart(subset).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
-    y= alt.Y ('VALUENUM', title = f"Value ({unit})", scale=alt.Scale(type='log', domain=[10, 2000])),
+    y= alt.Y ('VALUENUM', title = f"Value ({unit})", scale=alt.Scale(type='log')),
     color='Survival',
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
 ).interactive()
