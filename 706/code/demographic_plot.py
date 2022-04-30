@@ -9,11 +9,11 @@ def load_data():
 df = load_data()
 
 conditions = [
-    (df['ETHNICITY'].contains('WHITE'),
-    (df['ETHNICITY'].contains('BLACK'),
-    (df['ETHNICITY'].contains('ASIAN'),
-    (df['ETHNICITY'].contains('UNKNOWN'),
-    !(df['ETHNICITY'].contains('UNKNOWN') & !(df['ETHNICITY'].contains('ASIAN') & !(df['ETHNICITY'].contains('BLACK') & !(df['ETHNICITY'].contains('WHITE')
+    (df['ETHNICITY'].contains('WHITE')),
+    (df['ETHNICITY'].contains('BLACK')),
+    (df['ETHNICITY'].contains('ASIAN')),
+    (df['ETHNICITY'].contains('UNKNOWN')),
+    (!df['ETHNICITY'].contains('UNKNOWN')( & (!df['ETHNICITY'].contains('ASIAN')) & (!df['ETHNICITY'].contains('BLACK')) & (!df['ETHNICITY'].contains('WHITE'))
     ]
 values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
 df['RACE'] = np.select(conditions, values)
