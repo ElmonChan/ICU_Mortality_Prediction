@@ -21,11 +21,11 @@ if death == 'Expired':
 elif death == 'Survived': 
     subset = subset[subset["Expire_Flag"] == 0]
 
-alt.Chart(subset).mark_circle(size=20).encode(
+chart = alt.Chart(subset).mark_circle(size=20).encode(
     x='time_to_icu_mins',
     y='VALUENUM',
     #color='Origin',
     #tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
 ).interactive()
 
-#st.altair_chart(chart, use_container_width=True)
+st.altair_chart(chart)
