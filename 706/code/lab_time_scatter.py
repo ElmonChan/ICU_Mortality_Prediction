@@ -21,7 +21,7 @@ if death == 'Expired':
 elif death == 'Survived': 
     subset = subset[subset["Survival"] == death]
 
-unit = subset["VALUEUOM"].loc[0]
+unit = subset["VALUEUOM"].iloc[0]
 
 
 chart = alt.Chart(subset).mark_circle(size=20).encode(
