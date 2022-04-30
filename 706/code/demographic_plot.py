@@ -28,12 +28,14 @@ expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdow
 
 base = alt.Chart(df)
 
-bar1 = base.transform_filter(expire_select).mark_bar().encode(
-    x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+bar1 = base.encode(
+    x = alt.X('AGE_GROUP:N',title=None, axis=alt.Axis(labels=False)),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
     column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+    ).add_selector(
+	expire_select
     ).properties(
         title= "population for different age groups",
     ).interactive(bind_y=True)
