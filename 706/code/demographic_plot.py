@@ -52,14 +52,12 @@ donut = alt.Chart(df).mark_arc(innerRadius=50, outerRadius=90).encode(
     tooltip = ['sum(EXPIRE_FLAG)', 'AGE_GROUP']
 ).properties(
 	title= "proportion of expired patients in gender",
-	width = 250
+	#width = 250
     )
 
 #bar1 & bar2.properties(df.sample(df.shape[0]))
-chart = alt.vconcat(bar1, donut
-).resolve_scale(
-    color='independent'
-)
 
-chart
+
+bar1
+Donut
 bar2
