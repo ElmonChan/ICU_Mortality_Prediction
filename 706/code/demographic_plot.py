@@ -9,10 +9,10 @@ def load_data():
 df = load_data()
 
 conditions = [
-    (df['ETHNICITY'].contains('WHITE')),
-    (df['ETHNICITY'].contains('BLACK')),
-    (df['ETHNICITY'].contains('ASIAN')),
-    (df['ETHNICITY'].contains('UNKNOWN')),
+    ('WHITE' in df['ETHNICITY']),
+    ('BLACK' in df['ETHNICITY']),
+    ('ASIAN' in df['ETHNICITY'])
+    ('UNKNOWN' in df['ETHNICITY'])
     ('UNKNOWN' not in df['ETHNICITY']) & ('ASIAN' not in df['ETHNICITY']) & ('BLACK' not in df['ETHNICITY']) & ('WHITE' not in df['ETHNICITY'])
     ]
 values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
