@@ -1,6 +1,7 @@
 import altair as alt
 import pandas as pd
 import streamlit as st
+import numpy as np
 
 
 def load_data():
@@ -11,8 +12,8 @@ df = load_data()
 conditions = [
     ('WHITE' in df['ETHNICITY']),
     ('BLACK' in df['ETHNICITY']),
-    ('ASIAN' in df['ETHNICITY'])
-    ('UNKNOWN' in df['ETHNICITY'])
+    ('ASIAN' in df['ETHNICITY']),
+    ('UNKNOWN' in df['ETHNICITY']),
     ('UNKNOWN' not in df['ETHNICITY']) & ('ASIAN' not in df['ETHNICITY']) & ('BLACK' not in df['ETHNICITY']) & ('WHITE' not in df['ETHNICITY'])
     ]
 values = ['WHITE', 'BLACK', 'ASIAN', 'UNKNOWN', 'OTHER']
