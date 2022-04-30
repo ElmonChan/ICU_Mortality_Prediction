@@ -9,7 +9,7 @@ icu_labs = pd.read_csv('706/data/icu_lab.csv')
 option = st.selectbox(
      'select lab',
      icu_labs.LABEL.unique(), 
-     default='Alkaline Phosphatase')
+     index = 1)
 
 subset = icu_labs[icu_labs["LABEL"] == option]
 
