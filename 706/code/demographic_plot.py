@@ -7,6 +7,15 @@ import numpy as np
 def load_data():
     df = pd.read_csv("706/data/demographic.csv")
     df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.replace('-', ' ').replace(', ', ' ').replace('/',' ').split()[0])
+    df[df['ETHNICITY'] == 'UNALBE']['ETHNICITY'] = 'UNKNOWN'
+    df[df['ETHNICITY'] == 'PATIENT']['ETHNICITY'] = 'UNKNOWN'
+    df[df['ETHNICITY'] == 'MIDDLE']['ETHNICITY'] = 'OTHER'
+    df[df['ETHNICITY'] == 'MULTI']['ETHNICITY'] = 'OTHER'
+    df[df['ETHNICITY'] == 'NATIVE']['ETHNICITY'] = 'OTHER'
+    df[df['ETHNICITY'] == 'SOUTH']['ETHNICITY'] = 'OTHER'
+    df[df['ETHNICITY'] == 'PORTUGUESE']['ETHNICITY'] = 'OTHER'
+    df[df['ETHNICITY'] == 'CARIBBEAN']['ETHNICITY'] = 'OTHER'
+    df[df['ETHNICITY'] == 'AMERICAN']['ETHNICITY'] = 'OTHER'
     return df
 df = load_data()
 
