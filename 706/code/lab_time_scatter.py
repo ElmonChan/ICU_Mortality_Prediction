@@ -21,9 +21,12 @@ if death == 'Expired':
 elif death == 'Survived': 
     subset = subset[subset["Survival"] == death]
 
+unit = subset["VALUEUOM"].loc[0]
+
+
 chart = alt.Chart(subset).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
-    y= alt.Y ('VALUENUM', title = f"Value ({'VALUEUOM'})"),
+    y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
     color='Survival',
     #tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
 ).interactive()
