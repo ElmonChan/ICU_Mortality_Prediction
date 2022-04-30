@@ -7,7 +7,7 @@ st.write('Hello world!')
 icu_labs = pd.read_csv('706/data/icu_lab.csv')
 
 def label_death (row):
-   if row['EXPIRE_FLAG'] == 1 :
+   if row['Expire_Flag'] == 1 :
       return 'Expired'
    return 'Survived'
 
