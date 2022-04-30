@@ -27,7 +27,7 @@ bar2 = alt.Chart(df).mark_bar().encode(
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    Row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+    row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
     )
