@@ -6,8 +6,6 @@ st.write('Hello world!')
 
 icu_labs = pd.read_csv('706/data/icu_lab.csv')
 
-
-
 option = st.selectbox(
      'select lab',
      icu_labs.LABEL.unique())
@@ -24,8 +22,8 @@ elif death == 'Survived':
     subset = subset[subset["Survival"] == death]
 
 chart = alt.Chart(subset).mark_circle(size=20).encode(
-    x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU in mins'),
-    y='VALUENUM',
+    x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
+    y= alt.Y ('VALUENUM', title = f"Value ({'VALUEUOM'})"),
     color='Survival',
     #tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
 ).interactive()
