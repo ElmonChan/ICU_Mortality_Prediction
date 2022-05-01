@@ -27,13 +27,26 @@ elif death == 'Survived':
 
 unit = subset["VALUEUOM"].iloc[0]
 
-std_scale = preprocessing.MinMaxScaler().fit(subset[['VALUENUM']])
-subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
+#std_scale = preprocessing.MinMaxScaler().fit(subset[['VALUENUM']])
+#subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
 
-chart = alt.Chart(subset).mark_circle(size=20).encode(
+
+normal_labs = subset[subset['FLAG'] != 'abnormal']
+abnormal_labs = subset[subset['FLAG'] == 'abnormal']
+
+
+
+chart1 = alt.Chart(normal_labs).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
     y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
-    color='FLAG',
+    color='Survival',
+    tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
+).interactive()
+
+chart2 = alt.Chart(abnormal_labs).mark_circle(size=20).encode(
+    x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
+    y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
+    color='Survival',
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
 ).interactive()
 
@@ -45,4 +58,6 @@ chart = alt.Chart(subset).mark_circle(size=20).encode(
 
 #chart = chart + chart.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
 
-st.altair_chart(chart, use_container_width=True)
+st.altair_chart(chart1, use_container_width=True)
+st.altair_chart(chart2, use_container_width=True)
+
