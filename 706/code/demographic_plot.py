@@ -114,7 +114,7 @@ def app():
             color = alt.Color("Death:N"),
             column = alt.Column('ETHNICITY')
         ).properties(
-            width=1000
+            width=200
         )
         st.altair_chart(raceChart)
 
