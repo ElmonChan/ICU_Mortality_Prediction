@@ -115,7 +115,7 @@ def app():
              color=alt.Color('Death', legend=None),
              row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
              tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
-             row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+             #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
         )
         st.altair_chart(raceChart)
 
