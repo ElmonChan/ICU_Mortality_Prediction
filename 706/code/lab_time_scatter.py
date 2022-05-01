@@ -28,8 +28,8 @@ elif death == 'Survived':
 
 unit = subset["VALUEUOM"].iloc[0]
 
-std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
-subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
+#std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
+#subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
 
 
 normal_labs = subset[subset['FLAG'] != 'abnormal']
