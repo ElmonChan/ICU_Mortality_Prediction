@@ -69,7 +69,12 @@ def app():
             tooltip=['count(SUBJECT_ID)', 'Death'],
         )
 
-        plot = donutMale + donutFemale
+        st.altair_chart(donutMale)
+        st.altair_chart(donutFemale)
+
+
+
+        
 
     elif group_choice == 'Expired/Survived':
         bar1 = base.mark_bar().encode(
@@ -129,4 +134,3 @@ def app():
     #         )
     #     with col3:
     #         st.altair_chart(donut)
-    st.altair_chart(plot)
