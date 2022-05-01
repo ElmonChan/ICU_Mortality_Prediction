@@ -108,11 +108,11 @@ def app():
         # )
 
         raceChart = alt.Chart(df).mark_bar().encode(
-            x=alt.X("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
-            y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
+            y=alt.Y("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
+            x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
 
             color = alt.Color("Death:N"),
-            column = alt.Column('ETHNICITY')
+            row = alt.Row('ETHNICITY')
         ).properties(
             width=1000
         )
