@@ -113,25 +113,26 @@ def app():
         #     width=200
         # )
 
-        raceChart1 = alt.Chart(df).mark_bar().encode(
-            y=alt.Y('ETHNICITY:N', sort='-x'),
-            x=alt.X('count(SUBJECT_ID)'),
-            color=alt.Color('Death', legend=None),
-            row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
-            tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
-            #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
-         )
+        # raceChart1 = alt.Chart(df).mark_bar().encode(
+        #     y=alt.Y('ETHNICITY:N', sort='-x'),
+        #     x=alt.X('count(SUBJECT_ID)'),
+        #     color=alt.Color('Death', legend=None),
+        #     row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
+        #     tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
+        #     #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+        #  )
 
-        raceChart2 = base.mark_bar().encode(
+        raceChart = base.mark_bar().encode(
             y=alt.Y('count(SUBJECT_ID)'),
             x=alt.X('Death', axis=alt.Axis(labels=True, title='')),
             color=alt.Color('Death', legend=None),
-            column='ETHNICITY',
+            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
+            column= alt.Column('ETHNICITY', header=alt.Header(labelAngle=90))
             tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           )
-        st.altair_chart(raceChart1)
-        st.altair_chart(raceChart2)
+        #st.altair_chart(raceChart1)
+        st.altair_chart(raceChart)
 
 
 
