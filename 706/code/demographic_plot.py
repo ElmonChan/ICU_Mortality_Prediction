@@ -1,3 +1,4 @@
+#from tkinter.tix import COLUMN
 import pandas as pd
 import altair as alt
 import streamlit as st
@@ -9,7 +10,7 @@ def app():
 
     group_choice = st.radio(
         "Group By",
-        ('Gender', 'Expired/Survived', 'None')
+        ('Gender', 'Race', 'None')
     )
     st.markdown("""---""")
 
@@ -31,59 +32,109 @@ def app():
 
     df['GENDER'] = df['GENDER'].map({'F': 'Female', 'M': 'Male'})
     df['Death'] = df['EXPIRE_FLAG'].map({0: 'Survived', 1: 'Expired'})
+    
+    #df.columns = df.columns.str.strip()
+    df['ETHNICITY'] = df['ETHNICITY'].str.strip()
+
 
     # with st.sidebar:
 
     base = alt.Chart(df)
 
     if group_choice == 'Gender':
-        bar1 = base.mark_bar().encode(
-            y = alt.Y('count(SUBJECT_ID)'),
-            x = alt.X('GENDER',axis=alt.Axis( labels=False,title='')),
-            color = alt.Color('GENDER:N',scale=alt.Scale(range=['#EA98D2', '#659CCA']),legend=None),
-            column = 'AGE_GROUP',
-            tooltip = ['count(SUBJECT_ID)','AGE_GROUP','GENDER:N'],
-            #column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
-            )
+        # bar1 = base.mark_bar().encode(
+        #     y = alt.Y('count(SUBJECT_ID)'),
+        #     x = alt.X('GENDER',axis=alt.Axis( labels=False,title='')),
+        #     color = alt.Color('GENDER:N',scale=alt.Scale(range=['#EA98D2', '#659CCA']),legend=None),
+        #     column = 'AGE_GROUP',
+        #     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','GENDER:N'],
+        #     #column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+        #     )
 
-        bar2 = base.mark_bar().encode(
-            y=alt.Y('ETHNICITY:N', sort='-x'),
-            x=alt.X('count(SUBJECT_ID)'),
-            color=alt.Color('GENDER:N',scale=alt.Scale(range=['#EA98D2', '#659CCA']),legend=None),
-            row=alt.Row('GENDER',title='',spacing=5,header=alt.Header(labels=False)),
-            tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'GENDER:N'],
-        )
+        # bar2 = base.mark_bar().encode(
+        #     y=alt.Y('ETHNICITY:N', sort='-x'),
+        #     x=alt.X('count(SUBJECT_ID)'),
+        #     color=alt.Color('GENDER:N',scale=alt.Scale(range=['#EA98D2', '#659CCA']),legend=None),
+        #     row=alt.Row('GENDER',title='',spacing=5,header=alt.Header(labels=False)),
+        #     tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'GENDER:N'],
+        # )
 
-        donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
+        males = df[df['GENDER'] == 'Male']
+        females = df[df['GENDER'] != 'Male']
+
+        donutMale = alt.Chart(males).mark_arc(innerRadius=50, outerRadius=90).encode(
             theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
-            color=alt.Color('GENDER:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
-            tooltip=['count(SUBJECT_ID)', 'GENDER'],
-        )
-    elif group_choice == 'Expired/Survived':
-        bar1 = base.mark_bar().encode(
-            y=alt.Y('count(SUBJECT_ID)'),
-            x=alt.X('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death', legend=None),
-            column='AGE_GROUP',
-            tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+            color=alt.Color('Death:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
+            tooltip=['count(SUBJECT_ID)', 'Death'],
+        ).properties (
+            title = 'Males'
         )
 
+        donutFemale = alt.Chart(females).mark_arc(innerRadius=50, outerRadius=90).encode(
+            theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
+            color=alt.Color('Death:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
+            tooltip=['count(SUBJECT_ID)', 'Death'],
+        ).properties (
+            title = 'Females'
+        )
 
-        bar2 = base.mark_bar().encode(
+        with col1:
+         st.altair_chart(donutMale)
+        with col2:
+         st.altair_chart(donutFemale)
+
+
+
+    elif group_choice == 'Race':
+        # bar1 = base.mark_bar().encode(
+        #     y=alt.Y('count(SUBJECT_ID)'),
+        #     x=alt.X('Death', axis=alt.Axis(labels=False, title='')),
+        #     color=alt.Color('Death', legend=None),
+        #     column='AGE_GROUP',
+        #     tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
+        #     # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+        # )
+
+
+
+        # donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
+        #     theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
+        #     color=alt.Color(field='Death'),
+        #     tooltip=['count(SUBJECT_ID)', 'Death']
+        # )
+
+        # raceChart = alt.Chart(df).mark_bar().encode(
+        #     x=alt.X("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
+        #     y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
+
+        #     color = alt.Color("Death:N"),
+        #     column = alt.Column('ETHNICITY')
+        # ).properties(
+        #     width=200
+        # )
+
+        raceChart1 = alt.Chart(df).mark_bar().encode(
             y=alt.Y('ETHNICITY:N', sort='-x'),
             x=alt.X('count(SUBJECT_ID)'),
             color=alt.Color('Death', legend=None),
             row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
             tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
-            # row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
-        )
+            #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+         )
 
-        donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
-            theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
-            color=alt.Color(field='Death'),
-            tooltip=['count(SUBJECT_ID)', 'Death']
-        )
+        raceChart2 = base.mark_bar().encode(
+            y=alt.Y('count(SUBJECT_ID)'),
+            x=alt.X('Death', axis=alt.Axis(labels=True, title='')),
+            color=alt.Color('Death', legend=None),
+            column='ETHNICITY',
+            tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
+            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+          )
+        st.altair_chart(raceChart1)
+        st.altair_chart(raceChart2)
+
+
+
     else:
 
         bar1 = base.mark_bar().encode(
@@ -105,15 +156,15 @@ def app():
         )
 
 
-    with col1:
-        st.altair_chart(bar1)
-    with col2:
-        st.altair_chart(bar2)
+    # with col1:
+    #     st.altair_chart(bar1)
+    # with col2:
+    #     st.altair_chart(bar2)
 
-    if group_choice != 'None':
-        donut = donut.properties(
-                title="Proportion of expired patients in gender",
-                width=400
-            )
-        with col3:
-            st.altair_chart(donut)
+    # if group_choice != 'None':
+    #     donut = donut.properties(
+    #             title="Proportion of expired patients in gender",
+    #             width=400
+    #         )
+    #     with col3:
+    #         st.altair_chart(donut)
