@@ -61,16 +61,22 @@ def app():
             theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
             color=alt.Color('Death:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
             tooltip=['count(SUBJECT_ID)', 'Death'],
+        ).properties (
+            title = 'Males'
         )
 
         donutFemale = alt.Chart(females).mark_arc(innerRadius=50, outerRadius=90).encode(
             theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
             color=alt.Color('Death:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
             tooltip=['count(SUBJECT_ID)', 'Death'],
+        ).properties (
+            title = 'Females'
         )
 
-        st.altair_chart(donutMale)
-        st.altair_chart(donutFemale)
+        with col1:
+         st.altair_chart(donutMale)
+        with col2:
+         st.altair_chart(donutFemale)
 
 
 
