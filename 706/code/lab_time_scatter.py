@@ -39,14 +39,14 @@ chart1 = alt.Chart(normal_labs).mark_circle(size=20).encode(
     y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
     color='Survival',
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
-).interactive()
+)
 
 chart2 = alt.Chart(abnormal_labs).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
     y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
     color='Survival',
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
-).interactive()
+)
 
 #band = alt.Chart(subset).mark_errorband(extent='ci').encode(
     #x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
@@ -61,8 +61,8 @@ plot2 = chart2 + chart2.transform_regression('time_to_icu_mins', 'VALUENUM').mar
 
 #sc_plot + sc_plot.transform_regression('temp_max', 'temp_min').mark_line()
 st.write("### lab records within normal range")
-#st.altair_chart(plot1, use_container_width=True)
+st.altair_chart(plot1, use_container_width=True)
 
 st.write("### lab records outside of normal range")
-#st.altair_chart(plot2, use_container_width=True)
+st.altair_chart(plot2, use_container_width=True)
 
