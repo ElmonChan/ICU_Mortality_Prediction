@@ -58,8 +58,8 @@ chart2 = alt.Chart(abnormal_labs).mark_circle(size=20).encode(
 
 #chart = chart + chart.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
 
-st.write("# Normal lab records")
+st.write("### Normal lab records")
 st.altair_chart(chart1, use_container_width=True)
-st.write("# Abnormal lab records")
+st.write("### Abnormal lab records")
 st.altair_chart(chart2, use_container_width=True)
 
