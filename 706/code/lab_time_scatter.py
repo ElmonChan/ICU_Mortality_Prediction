@@ -28,8 +28,8 @@ elif death == 'Survived':
 
 unit = subset["VALUEUOM"].iloc[0]
 
-std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
-subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
+#std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
+#subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
 
 
 normal_labs = subset[subset['FLAG'] != 'abnormal']
@@ -54,8 +54,8 @@ chart2 = alt.Chart(abnormal_labs).mark_circle(size=20).encode(
     #y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
 #)
 
-#chart1 = chart1 + chart1.transform_regression('time_to_icu_mins', 'VALUENUM', groupby=['Survival']).mark_line()
-#chart2 = chart2 + chart2.transform_regression('time_to_icu_mins', 'VALUENUM', groupby=['Survival']).mark_line()
+chart1 = chart1 + chart1.transform_regression('time_to_icu_mins', 'VALUENUM', groupby=['Survival']).mark_line()
+chart2 = chart2 + chart2.transform_regression('time_to_icu_mins', 'VALUENUM', groupby=['Survival']).mark_line()
 
 #sc_plot + sc_plot.transform_regression('temp_max', 'temp_min').mark_line()
 st.write("### lab records within normal range")
