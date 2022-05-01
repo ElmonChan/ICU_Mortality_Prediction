@@ -20,45 +20,56 @@ def load_data():
     return df
 df = load_data()
 
-#expire = [0,1]
-#expire_dropdown = alt.binding_select(options=expire)
-#expire_select = alt.selection_single(fields=['EXPIRE_FLAG'], bind=expire_dropdown,  #init={'EXPIRE':expire[0]})
-#sex = st.radio('GENDER', ('M', 'F'))
-#subset = df[df["Sex"] == sex]
+def label_death (row):
+   if row['EXPIRE_FLAG'] == 1 :
+      return 'Expired'
+   return 'Survived'
+
+df['Death'] = df.apply (lambda row: label_death(row), axis=1)
+
+death = st.radio(
+    "select patients",
+    ('Expired', 'Survived', 'All'))
+
+if death == 'Expired':
+    df = df[df["EXPIRE_FLAG"] == 1]
+elif death == 'Survived': 
+    df = df[df["EXPIRE_FLAG"] == 0]
 
 base = alt.Chart(df)
 
 bar1 = base.mark_bar().encode(
-    x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+    x = alt.X('AGE_GROUP'),
     y = 'count(SUBJECT_ID)',
-    color = alt.Color('EXPIRE_FLAG:N'),
-    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+    color = alt.Color('Death'),
+    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','Death'],
+    #column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different age groups",
     ).interactive(bind_y=True)
 
 bar2 = base.mark_bar().encode(
-    y = alt.Y('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+    y = alt.Y('ETHNICITY'),
     x = 'count(SUBJECT_ID)',
-    color = alt.Color('EXPIRE_FLAG:N'),
-    tooltip = ['count(SUBJECT_ID)','EXPIRE_FLAG'],
-    row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+    color = alt.Color('Death'),
+    tooltip = ['count(SUBJECT_ID)','ETHNICITY','Death'],
+    #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
+    ).configure_axis(
+    labelFontSize=6,
+    labelAngle=60
     )
-
 
 donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
     color = alt.Color(field='GENDER', type='ordinal'),
-    tooltip = ['sum(SUBJECT_ID)', 'AGE_GROUP']
+    tooltip = ['count(SUBJECT_ID)', 'AGE_GROUP']
     ).properties(
 	title= "proportion of expired patients in gender",
 	#width = 250
     )
 
-#bar1 & bar2.properties(df.sample(df.shape[0]))
 
 
 bar1
