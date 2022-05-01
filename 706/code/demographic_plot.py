@@ -41,8 +41,8 @@ base = alt.Chart(df)
 bar1 = base.mark_bar().encode(
     x = alt.X('AGE_GROUP'),
     y = 'count(SUBJECT_ID)',
-    color = alt.Color('EXPIRE_FLAG:N'),
-    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
+    color = alt.Color('Death'),
+    tooltip = ['count(SUBJECT_ID)','AGE_GROUP','Death'],
     #column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different age groups",
@@ -51,8 +51,8 @@ bar1 = base.mark_bar().encode(
 bar2 = base.mark_bar().encode(
     y = alt.Y('ETHNICITY'),
     x = 'count(SUBJECT_ID)',
-    color = alt.Color('EXPIRE_FLAG:N'),
-    tooltip = ['count(SUBJECT_ID)','ETHNICITY','EXPIRE_FLAG'],
+    color = alt.Color('Death'),
+    tooltip = ['count(SUBJECT_ID)','ETHNICITY','Death'],
     #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
