@@ -55,7 +55,7 @@ def app():
     ).properties(
         #title=f"Number of Patients with Diagnosis",
         width=1000,
-    )
+    ).configure_axisY(labelAngle = -90)
 
     st.altair_chart(chart, use_container_width=True)
 
