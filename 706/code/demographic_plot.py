@@ -123,11 +123,11 @@ def app():
         #  )
 
         raceChart = base.mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)'),
-            y=alt.Y('Death', axis=alt.Axis(labels=True, title='')),
+            x=alt.X('count(SUBJECT_ID)', sort='-x'),
+            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
             color=alt.Color('Death:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
-            row= alt.Row('ETHNICITY', header=alt.Header(labelAngle=0)),
+            row= alt.Row('ETHNICITY'),
             tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           )
