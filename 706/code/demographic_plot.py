@@ -49,10 +49,10 @@ bar1 = base.mark_bar().encode(
     ).interactive(bind_y=True)
 
 bar2 = base.mark_bar().encode(
-    y = alt.Y('ETHNICITY',title=None, axis=alt.Axis(labels=False)),
+    y = alt.Y('ETHNICITY'),
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
-    tooltip = ['count(SUBJECT_ID)','EXPIRE_FLAG'],
+    tooltip = ['count(SUBJECT_ID)','ETHNICITY','EXPIRE_FLAG'],
     #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
@@ -68,7 +68,6 @@ donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
 	#width = 250
     )
 
-#bar1 & bar2.properties(df.sample(df.shape[0]))
 
 
 bar1
