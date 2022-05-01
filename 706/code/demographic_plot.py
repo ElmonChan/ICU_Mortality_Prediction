@@ -127,7 +127,7 @@ def app():
             y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
             color=alt.Color('Death:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
-            row= alt.Row('ETHNICITY', header=alt.Header(labelAngle=0, labelBaseline = 'bottom')),
+            row= alt.Row('ETHNICITY', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
             tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           )
