@@ -64,7 +64,7 @@ bar2 = base.mark_bar().encode(
 donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
     color = alt.Color(field='GENDER', type='ordinal'),
-    tooltip = ['sum(SUBJECT_ID)', 'AGE_GROUP']
+    tooltip = ['count(SUBJECT_ID)', 'AGE_GROUP']
     ).properties(
 	title= "proportion of expired patients in gender",
 	#width = 250
