@@ -61,8 +61,8 @@ plot2 = chart2 + chart2.transform_regression('time_to_icu_mins', 'VALUENUM').mar
 
 #sc_plot + sc_plot.transform_regression('temp_max', 'temp_min').mark_line()
 st.write("### lab records within normal range")
-st.altair_chart(plot1, use_container_width=True)
+#st.altair_chart(plot1, use_container_width=True)
 
 st.write("### lab records outside of normal range")
-st.altair_chart(plot2, use_container_width=True)
+#st.altair_chart(plot2, use_container_width=True)
 
