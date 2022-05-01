@@ -112,7 +112,7 @@ def app():
             y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
 
             color = alt.Color("Death:N"),
-            COLUMN = alt.Column('ETHNICITY')
+            column = alt.Column('ETHNICITY')
         ).properties(
             width=1000
         )
