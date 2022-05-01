@@ -123,7 +123,7 @@ def app():
         #  )
 
         raceChart = base.mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', sort='-x'),
+            x=alt.X('count(SUBJECT_ID)', sort='x'),
             y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
             color=alt.Color('Death:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
