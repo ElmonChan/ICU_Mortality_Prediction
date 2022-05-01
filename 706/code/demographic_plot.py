@@ -80,33 +80,43 @@ def app():
 
 
 
-        
+    elif group_choice == 'Race':
+        # bar1 = base.mark_bar().encode(
+        #     y=alt.Y('count(SUBJECT_ID)'),
+        #     x=alt.X('Death', axis=alt.Axis(labels=False, title='')),
+        #     color=alt.Color('Death', legend=None),
+        #     column='AGE_GROUP',
+        #     tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
+        #     # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+        # )
 
-    elif group_choice == 'Expired/Survived':
-        bar1 = base.mark_bar().encode(
-            y=alt.Y('count(SUBJECT_ID)'),
-            x=alt.X('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death', legend=None),
-            column='AGE_GROUP',
-            tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+
+        # bar2 = base.mark_bar().encode(
+        #     y=alt.Y('ETHNICITY:N', sort='-x'),
+        #     x=alt.X('count(SUBJECT_ID)'),
+        #     color=alt.Color('Death', legend=None),
+        #     row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
+        #     tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
+        #     # row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+        # )
+
+        # donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
+        #     theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
+        #     color=alt.Color(field='Death'),
+        #     tooltip=['count(SUBJECT_ID)', 'Death']
+        # )
+
+        raceChart = alt.Chart(df).mark_bar().encode(
+            x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
+            y=alt.Y("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
+            color = alt.Color("Death:N"),
+            row = alt.Row('ETHNICITY')
+        ).properties(
+            width=1000
         )
+        st.altair_chart(raceChart)
 
 
-        bar2 = base.mark_bar().encode(
-            y=alt.Y('ETHNICITY:N', sort='-x'),
-            x=alt.X('count(SUBJECT_ID)'),
-            color=alt.Color('Death', legend=None),
-            row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
-            tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
-            # row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
-        )
-
-        donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
-            theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
-            color=alt.Color(field='Death'),
-            tooltip=['count(SUBJECT_ID)', 'Death']
-        )
     else:
 
         bar1 = base.mark_bar().encode(
