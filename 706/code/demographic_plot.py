@@ -32,14 +32,14 @@ death = st.radio(
     ('Expired', 'Survived', 'All'))
 
 if death == 'Expired':
-    Df = df[df["EXPIRE_FLAG"] == 1]
+    df = df[df["EXPIRE_FLAG"] == 1]
 elif death == 'Survived': 
-    Df = df[df["EXPIRE_FLAG"] == 0]
+    df = df[df["EXPIRE_FLAG"] == 0]
 
 base = alt.Chart(df)
 
 bar1 = base.mark_bar().encode(
-    x = alt.X('AGE_GROUP',title=None, axis=alt.Axis(labels=False)),
+    x = alt.X('AGE_GROUP'),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
