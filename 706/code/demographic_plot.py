@@ -10,7 +10,7 @@ def app():
 
     group_choice = st.radio(
         "Group By",
-        ('Gender', 'Race', 'None')
+        ('Gender', 'Race', 'Age Group', 'None')
     )
     st.markdown("""---""")
 
@@ -122,13 +122,13 @@ def app():
         #     #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
         #  )
 
-        raceChart = base.mark_bar().encode(
+        raceChart = alt.Chart(df).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
             y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
             color=alt.Color('Death:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('ETHNICITY', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
+            tooltip=['count(SUBJECT_ID)', 'Death'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
             #title=f"Number of Patients with Diagnosis",
@@ -137,10 +137,24 @@ def app():
         #st.altair_chart(raceChart1)
         st.altair_chart(raceChart)
 
+    elif group_choice == 'Age Group': 
+        ageChart = alt.Chart(df).mark_bar().encode(
+            x=alt.X('count(SUBJECT_ID)', sort='-x'),
+            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Death:N'),
+            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
+            row= alt.Row('AGE_GROUP', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
+            tooltip=['count(SUBJECT_ID)',  'Death'],
+            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+          ).properties(
+            #title=f"Number of Patients with Diagnosis",
+            width=1000,
+        )
+        #st.altair_chart(raceChart1)
+        st.altair_chart(ageChart)
 
 
     else:
-
         bar1 = base.mark_bar().encode(
             y=alt.Y('count(SUBJECT_ID)'),
             x=alt.X('AGE_GROUP'),
