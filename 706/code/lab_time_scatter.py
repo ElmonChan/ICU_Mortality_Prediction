@@ -33,7 +33,7 @@ subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
 chart = alt.Chart(subset).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
     y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
-    color='Survival',
+    color='FLAG',
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
 ).interactive()
 
