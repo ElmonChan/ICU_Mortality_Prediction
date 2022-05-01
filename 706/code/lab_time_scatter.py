@@ -37,12 +37,12 @@ chart = alt.Chart(subset).mark_circle(size=20).encode(
     tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
 ).interactive()
 
-band = alt.Chart(subset).mark_errorband(extent='ci').encode(
-    x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
-    y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
-)
+#band = alt.Chart(subset).mark_errorband(extent='ci').encode(
+    #x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
+    #y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
+#)
 
 
 #chart = chart + chart.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
 
-st.altair_chart(chart + band, use_container_width=True)
+st.altair_chart(chart, use_container_width=True)
