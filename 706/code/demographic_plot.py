@@ -33,8 +33,8 @@ def app():
     df['GENDER'] = df['GENDER'].map({'F': 'Female', 'M': 'Male'})
     df['Death'] = df['EXPIRE_FLAG'].map({0: 'Survived', 1: 'Expired'})
     
-    df.columns = df.columns.str.lstrip()
-    df.columns = df.columns.str.strip()
+    #df.columns = df.columns.str.strip()
+    df['ETHNICITY'] = df['ETHNICITY'].str.strip()
 
 
     # with st.sidebar:
