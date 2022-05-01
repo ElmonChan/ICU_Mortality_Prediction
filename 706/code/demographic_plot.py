@@ -92,14 +92,6 @@ def app():
         # )
 
 
-        # bar2 = base.mark_bar().encode(
-        #     y=alt.Y('ETHNICITY:N', sort='-x'),
-        #     x=alt.X('count(SUBJECT_ID)'),
-        #     color=alt.Color('Death', legend=None),
-        #     row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
-        #     tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
-        #     # row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
-        # )
 
         # donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
         #     theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
@@ -107,14 +99,23 @@ def app():
         #     tooltip=['count(SUBJECT_ID)', 'Death']
         # )
 
-        raceChart = alt.Chart(df).mark_bar().encode(
-            x=alt.X("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
-            y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
+        # raceChart = alt.Chart(df).mark_bar().encode(
+        #     x=alt.X("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
+        #     y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
 
-            color = alt.Color("Death:N"),
-            column = alt.Column('ETHNICITY')
-        ).properties(
-            width=200
+        #     color = alt.Color("Death:N"),
+        #     column = alt.Column('ETHNICITY')
+        # ).properties(
+        #     width=200
+        # )
+
+        raceChart = alt.Chart(df).mark_bar().encode(
+             y=alt.Y('ETHNICITY:N', sort='-x'),
+             x=alt.X('count(SUBJECT_ID)'),
+             color=alt.Color('Death', legend=None),
+             row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
+             tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
+             row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
         )
         st.altair_chart(raceChart)
 
