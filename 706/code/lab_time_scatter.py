@@ -27,8 +27,8 @@ elif death == 'Survived':
 
 unit = subset["VALUEUOM"].iloc[0]
 
-#std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
-#subset = std_scale.transform(subset[['VALUENUM']])
+std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
+subset = std_scale.transform(subset[['VALUENUM']])
 
 chart = alt.Chart(subset).mark_circle(size=20).encode(
     x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
