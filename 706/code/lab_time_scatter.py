@@ -1,7 +1,7 @@
 import altair as alt
 import streamlit as st
 import pandas as pd
-#from sklearn import preprocessing
+from sklearn import preprocessing
 
 
 
