@@ -58,7 +58,7 @@ st.write("### lab records within normal range")
 chart1 + chart1.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
 st.write("### lab records outside of normal range")
 
-chart2 + chart1.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
+chart2 + chart2.transform_regression('time_to_icu_mins', 'VALUENUM').mark_line()
 
 
 #sc_plot + sc_plot.transform_regression('temp_max', 'temp_min').mark_line()
