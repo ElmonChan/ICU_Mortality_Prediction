@@ -57,7 +57,8 @@ bar2 = base.mark_bar().encode(
     ).properties(
         title= "population for different race groups",
     ).configure_axis(
-    labelFontSize=5
+    labelFontSize=5,
+    labelAngle=45
     )
 
 donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
