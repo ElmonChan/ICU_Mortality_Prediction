@@ -21,7 +21,6 @@ def app():
     short_titles = [
         "Hypertension NOS",
         "Depressive disorder NEC",
-        "Hypertension NOS", 
         "Acute respiratry failure",
         "Pneumonia, organism NOS", 
         "History of tobacco use",
