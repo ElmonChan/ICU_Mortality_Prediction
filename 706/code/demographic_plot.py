@@ -56,8 +56,9 @@ bar2 = base.mark_bar().encode(
     #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
+    ).configure_axis(
+    labelFontSize=5
     )
-
 
 donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
     theta = alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
