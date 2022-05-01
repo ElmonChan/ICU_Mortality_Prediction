@@ -2,6 +2,7 @@ import altair as alt
 import streamlit as st
 import pandas as pd
 
+
 ################# Lab barplot ######################
 def app():
     item = pd.read_csv('706/data/labItemFilter.csv')
