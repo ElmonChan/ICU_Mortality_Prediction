@@ -39,21 +39,21 @@ elif death == 'Survived':
 base = alt.Chart(df)
 
 bar1 = base.mark_bar().encode(
-    x = alt.X('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+    x = alt.X('AGE_GROUP',title=None, axis=alt.Axis(labels=False)),
     y = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','EXPIRE_FLAG'],
-    column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+    #column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different age groups",
     ).interactive(bind_y=True)
 
 bar2 = base.mark_bar().encode(
-    y = alt.Y('EXPIRE_FLAG:N',title=None, axis=alt.Axis(labels=False)),
+    y = alt.Y('ETHNICITY',title=None, axis=alt.Axis(labels=False)),
     x = 'count(SUBJECT_ID)',
     color = alt.Color('EXPIRE_FLAG:N'),
     tooltip = ['count(SUBJECT_ID)','EXPIRE_FLAG'],
-    row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
+    #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
     ).properties(
         title= "population for different race groups",
     )
