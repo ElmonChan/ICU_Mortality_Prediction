@@ -205,7 +205,9 @@ def app():
 
 
     else:
-        marriageChart = alt.Chart(df).mark_bar().encode(
+        mdf = df[df.MARITAL_STATUS.notnull()]
+
+        marriageChart = alt.Chart(mdf).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
             y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
             color=alt.Color('Death:N'),
