@@ -31,7 +31,7 @@ def app():
     df[df['ETHNICITY'] == 'AMERICAN']['ETHNICITY'] = 'OTHER'
 
     df['GENDER'] = df['GENDER'].map({'F': 'Female', 'M': 'Male'})
-    df['Death'] = df['EXPIRE_FLAG'].map({0: 'Survived', 1: 'Expired'})
+    df['Survival'] = df['EXPIRE_FLAG'].map({0: 'Survived', 1: 'Expired'})
     
     #df.columns = df.columns.str.strip()
     df['ETHNICITY'] = df['ETHNICITY'].str.strip()
@@ -64,16 +64,16 @@ def app():
 
         donutMale = alt.Chart(males).mark_arc(innerRadius=50, outerRadius=90).encode(
             theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
-            color=alt.Color('Death:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
-            tooltip=['count(SUBJECT_ID)', 'Death'],
+            color=alt.Color('Survival:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
+            tooltip=['count(SUBJECT_ID)', 'Survival'],
         ).properties (
             title = 'Males'
         )
 
         donutFemale = alt.Chart(females).mark_arc(innerRadius=50, outerRadius=90).encode(
             theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
-            color=alt.Color('Death:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
-            tooltip=['count(SUBJECT_ID)', 'Death'],
+            color=alt.Color('Survival:N',scale=alt.Scale(range=['#EA98D2', '#659CCA'])),
+            tooltip=['count(SUBJECT_ID)', 'Survival'],
         ).properties (
             title = 'Females'
         )
@@ -124,11 +124,11 @@ def app():
 
         raceChart = alt.Chart(df).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death:N'),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Survival:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('ETHNICITY', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)', 'Death'],
+            tooltip=['count(SUBJECT_ID)', 'Survival'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
             #title=f"Number of Patients with Diagnosis",
@@ -140,11 +140,11 @@ def app():
     elif group_choice == 'Age Group': 
         ageChart = alt.Chart(df).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death:N'),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Survival:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('AGE_GROUP', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)',  'Death'],
+            tooltip=['count(SUBJECT_ID)',  'Survival'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
             #title=f"Number of Patients with Diagnosis",
@@ -156,11 +156,11 @@ def app():
     elif group_choice == 'Insurance': 
         insuranceChart = alt.Chart(df).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death:N'),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Survival:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('INSURANCE', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)',  'Death'],
+            tooltip=['count(SUBJECT_ID)',  'Survival'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
             #title=f"Number of Patients with Diagnosis",
@@ -172,11 +172,11 @@ def app():
     elif group_choice == 'Language': 
         languageChart = alt.Chart(df).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death:N'),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Survival:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('LANGUAGE', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)',  'Death'],
+            tooltip=['count(SUBJECT_ID)',  'Survival'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
             #title=f"Number of Patients with Diagnosis",
@@ -190,11 +190,11 @@ def app():
 
         religionChart = alt.Chart(rdf).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death:N'),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Survival:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('RELIGION', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)',  'Death'],
+            tooltip=['count(SUBJECT_ID)',  'Survival'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
             #title=f"Number of Patients with Diagnosis",
@@ -209,11 +209,11 @@ def app():
 
         marriageChart = alt.Chart(mdf).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Death:N'),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Survival:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('MARITAL_STATUS', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)',  'Death'],
+            tooltip=['count(SUBJECT_ID)',  'Survival'],
             # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
             #title=f"Number of Patients with Diagnosis",

@@ -7,7 +7,7 @@ import pandas as pd
 def app():
     item = pd.read_csv('706/data/labItemFilter.csv')
     lab_df = pd.read_csv('706/data/labPatientFilter.csv')
-    lab_df['Death'] = lab_df['EXPIRE_FLAG'].map({0: 'Survived', 1: 'Expired'})
+    lab_df['Survival'] = lab_df['EXPIRE_FLAG'].map({0: 'Survived', 1: 'Expired'})
 
     # combined = lab_df.merge (item, on ='ITEMID', how = 'left')
 
@@ -26,8 +26,8 @@ def app():
 
     barchart = alt.Chart(subset).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
-            y=alt.Y("Death:N",sort='-x', title = 'lab conducted', axis=alt.Axis(labels=False, title = '')),
-            color = alt.Color("Death:N"),
+            y=alt.Y("Survival:N",sort='-x', title = 'lab conducted', axis=alt.Axis(labels=False, title = '')),
+            color = alt.Color("Survival:N"),
             row = alt.Row('LABEL', title = 'lab conducted')
         ).properties(
             width=1000

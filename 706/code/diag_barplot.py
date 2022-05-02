@@ -15,7 +15,7 @@ def app():
           return 'Expired'
        return 'Survived'
 
-    df['Death'] = df.apply (lambda row: label_death(row), axis=1)
+    df['Survival'] = df.apply (lambda row: label_death(row), axis=1)
 
 
     short_titles = [
@@ -47,8 +47,8 @@ def app():
     chart = alt.Chart(subset).mark_rect().encode(
         x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
         #y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
-        y=alt.Y("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
-        color = alt.Color("Death:N"),
+        y=alt.Y("Survival:N",sort='-x', axis=alt.Axis(labels=False, title='')),
+        color = alt.Color("Survival:N"),
 
         row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left'))
 

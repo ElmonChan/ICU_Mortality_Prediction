@@ -53,14 +53,14 @@ def app():
     abnormal_labs = subset[subset['FLAG'] == 'abnormal']
 
     chart1 = alt.Chart(normal_labs).mark_circle(size=20).encode(
-        x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
+        x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time Before ICU Admission (min)'),
         y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
         color='Survival',
         tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
     )
 
     chart2 = alt.Chart(abnormal_labs).mark_circle(size=20).encode(
-        x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time to ICU (min)'),
+        x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=True), title = 'Time Before ICU Admission (min)'),
         y= alt.Y ('VALUENUM', title = f"Value ({unit})"),
         color='Survival',
         tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
@@ -87,7 +87,7 @@ def app():
     )
 
     #sc_plot + sc_plot.transform_regression('temp_max', 'temp_min').mark_line()
-    st.write("### lab records outside of normal range")
+    st.write("### lab records outside normal range")
     st.altair_chart(chart2)
     st.write("### lab records within normal range")
     st.altair_chart(chart1)
