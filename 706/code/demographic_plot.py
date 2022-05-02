@@ -10,7 +10,7 @@ def app():
 
     group_choice = st.radio(
         "Group By",
-        ('Gender', 'Race', 'Age Group', 'Insurance', 'Language', 'Religion', 'MARITAL_STATUS')
+        ('Gender', 'Race', 'Age Group', 'Insurance', 'Religion', 'Maritial Status')
     )
     st.markdown("""---""")
 
@@ -186,6 +186,8 @@ def app():
         st.altair_chart(languageChart)
     
     elif group_choice == 'Religion': 
+        rdf = df[df.RELIGION.notnull()]
+
         religionChart = alt.Chart(df).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', sort='-x'),
             y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
