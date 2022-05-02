@@ -10,14 +10,14 @@ def app():
 
     group_choice = st.radio(
         "Group By",
-        ('Gender', 'Race', 'Age Group', 'None')
+        ('Gender', 'Race', 'Age Group', 'Insurance', 'Language', 'None')
     )
     st.markdown("""---""")
 
     col1, col2, col3 = st.columns(3)
 
     ################# Demographic ######################
-    df = pd.read_csv("706/data/demographic.csv")
+    df = pd.read_csv("706/data/demographic_new.csv")
     df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/')[0])
     df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('-')[0])
     df.replace('UNALBE', 'UNKNOWN')
@@ -152,6 +152,22 @@ def app():
         )
         #st.altair_chart(raceChart1)
         st.altair_chart(ageChart)
+
+    elif group_choice == 'Insurance': 
+        insuranceChart = alt.Chart(df).mark_bar().encode(
+            x=alt.X('count(SUBJECT_ID)', sort='-x'),
+            y=alt.Y('Death', axis=alt.Axis(labels=False, title='')),
+            color=alt.Color('Death:N'),
+            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
+            row= alt.Row('INSURANCE', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
+            tooltip=['count(SUBJECT_ID)',  'Death'],
+            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
+          ).properties(
+            #title=f"Number of Patients with Diagnosis",
+            width=1000,
+        )
+        #st.altair_chart(raceChart1)
+        st.altair_chart(insuranceChart)
 
 
     else:
