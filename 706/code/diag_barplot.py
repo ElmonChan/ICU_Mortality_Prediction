@@ -49,7 +49,8 @@ def app():
         #y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
         y=alt.Y("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
         color = alt.Color("Death:N"),
-        row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
+
+        row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left'))
 
     ).properties(
         #title=f"Number of Patients with Diagnosis",
