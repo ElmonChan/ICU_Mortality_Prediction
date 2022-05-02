@@ -28,7 +28,7 @@ def app():
             x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
             y=alt.Y("Death:N",sort='-x', title = 'lab conducted', axis=alt.Axis(labels=False, title = '')),
             color = alt.Color("Death:N"),
-            row = alt.Row('LABEL')
+            row = alt.Row('LABEL', title = 'lab conducted')
         ).properties(
             width=1000
         )
