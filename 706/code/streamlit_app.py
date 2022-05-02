@@ -7,12 +7,16 @@ import demographic_plot
 import lab_barplot
 import diag_barplot
 import lab_time_scatter
+import lab_value_demo
+import home
 
 PAGES = {
-    "Demographic": demographic_plot,
-    "Lab": lab_barplot,
-    "Diagnosis": diag_barplot,
-    "Lab Value Before ICU": lab_time_scatter
+    "Home page": home,
+    "Distrubition of demographics": demographic_plot,
+    "Lab test distrubition": lab_barplot,
+    "Diagnosis distrubition": diag_barplot,
+    "Lab value Before ICU": lab_time_scatter,
+    "Abnormal labs & demographics": lab_value_demo
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))

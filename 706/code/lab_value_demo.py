@@ -7,35 +7,21 @@ from sklearn import preprocessing
 
 def app():
     st.write("## Demographics of patients with abnormal lab values")
+    st.write("This page allows exploration of demographics (age group and gender) for selected patients with abnormal lab values.")
 
     icu_labs = pd.read_csv('706/data/icuvalue_demo.csv')
 
     labs = list(icu_labs.LABEL.unique())
     default_ix = labs.index('Cholesterol, Total')
     option = st.selectbox(
-         'select lab',
+         'Select a lab test of interest here',
          labs,
          index = default_ix)
 
     subset = icu_labs[icu_labs["LABEL"] == option]
 
-    # death_choice = alt.selection(type='single',fields=['Survival'], init={'Survival':'Expired'})
-
-    # numRecordsChart = alt.Chart(subset).mark_bar(width=30).encode(
-    #     x= alt.X('Survival'),
-    #     y= alt.Y('count()', title = "Number of records"),
-    #     color=alt.condition(death_choice, alt.ColorValue("steelblue"), alt.ColorValue("grey"))
-    #     # tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
-    # ).add_selection(
-    #     death_choice
-    # ).properties(
-    #     width=500,
-    #     height=500
-    # )
-    # st.altair_chart(numRecordsChart)
-
     death_choice = st.radio(
-        "Select patients",
+        "Select patient survival status here",
         ('All', 'Expired', 'Survived'))
 
     if death_choice == 'Expired':
@@ -45,36 +31,28 @@ def app():
 
     unit = subset["VALUEUOM"].iloc[0]
 
-    #std_scale = preprocessing.StandardScaler().fit(subset[['VALUENUM']])
-    #subset[['VALUENUM']] = std_scale.transform(subset[['VALUENUM']])
-
-
-    abnormal_labs = subset[subset['FLAG'] == 'abnormal']
-
-
-
     brush = alt.selection(type="interval")
 
     
-    labs = alt.Chart(abnormal_labs).mark_point(size=40).encode(
+    labs = alt.Chart(subset).mark_point(size=40).encode(
         x= alt.X('time_to_icu_mins', scale=alt.Scale(reverse=False), title='Time before admission to ICU (min)'),
         y= alt.Y ('VALUENUM', scale=alt.Scale(zero=False), title=f"Value ({unit})"),
         color=alt.condition(brush, 'Survival', alt.value('lightgray')),
-        tooltip=['FLAG', 'time_to_icu_mins', 'Survival']
+        tooltip=['time_to_icu_mins', 'Survival']
     ).add_selection(
     brush
     ).properties(width=700, height=400, title="Abnormal lab values vs. time before admission to ICU")
 
-    age = alt.Chart(abnormal_labs).mark_bar().encode(
+    age = alt.Chart(subset).mark_bar().encode(
         y=alt.Y('AGE_GROUP:N', title='Age group'),
         x=alt.X(aggregate="count", axis=alt.Axis(tickMinStep=1), field='SUBJECT_ID', type='quantitative', title="Count of patients"),
-        color=alt.condition(brush, 'AGE_GROUP', alt.value('lightgray'))
+        color=alt.Color('AGE_GROUP:N')
     ).transform_filter(brush
     ).properties(width=400, height=200, title="Patient age distribution")
 
 
 
-    gender = alt.Chart(abnormal_labs).mark_arc(innerRadius=50, outerRadius=90).encode(
+    gender = alt.Chart(subset).mark_arc(innerRadius=50, outerRadius=90).encode(
             theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
             color=alt.Color('GENDER:N'),
             tooltip=['count(SUBJECT_ID)', 'GENDER'],

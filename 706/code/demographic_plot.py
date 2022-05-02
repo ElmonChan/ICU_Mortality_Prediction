@@ -6,15 +6,13 @@ import numpy as np
 
 def app():
 
-    st.write("## Demographic profile")
-
+    st.write("## Distribution of patient demographics")
+    st.write("We included a total of 10,282 patients in this study/visualization. To explore the distribution of patient demographics, select the choices below.")
     group_choice = st.radio(
-        "Group By",
-        ('Gender', 'Race', 'Age Group', 'Insurance', 'Religion', 'Maritial Status')
+        "Select the type of demographics to view:",
+        ('Age Group', 'Gender', 'Race', 'Insurance', 'Religion', 'Marital Status')
     )
     st.markdown("""---""")
-
-    col1, col2, col3 = st.columns(3)
 
     ################# Demographic ######################
     df = pd.read_csv("706/data/demographic_new.csv")
@@ -36,29 +34,11 @@ def app():
     #df.columns = df.columns.str.strip()
     df['ETHNICITY'] = df['ETHNICITY'].str.strip()
 
-
-    # with st.sidebar:
+    WIDTH = 600
 
     base = alt.Chart(df)
-
     if group_choice == 'Gender':
-        # bar1 = base.mark_bar().encode(
-        #     y = alt.Y('count(SUBJECT_ID)'),
-        #     x = alt.X('GENDER',axis=alt.Axis( labels=False,title='')),
-        #     color = alt.Color('GENDER:N',scale=alt.Scale(range=['#EA98D2', '#659CCA']),legend=None),
-        #     column = 'AGE_GROUP',
-        #     tooltip = ['count(SUBJECT_ID)','AGE_GROUP','GENDER:N'],
-        #     #column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
-        #     )
-
-        # bar2 = base.mark_bar().encode(
-        #     y=alt.Y('ETHNICITY:N', sort='-x'),
-        #     x=alt.X('count(SUBJECT_ID)'),
-        #     color=alt.Color('GENDER:N',scale=alt.Scale(range=['#EA98D2', '#659CCA']),legend=None),
-        #     row=alt.Row('GENDER',title='',spacing=5,header=alt.Header(labels=False)),
-        #     tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'GENDER:N'],
-        # )
-
+        col1, col2 = st.columns(2)
         males = df[df['GENDER'] == 'Male']
         females = df[df['GENDER'] != 'Male']
 
@@ -83,175 +63,75 @@ def app():
         with col2:
          st.altair_chart(donutFemale)
 
-
-
     elif group_choice == 'Race':
-        # bar1 = base.mark_bar().encode(
-        #     y=alt.Y('count(SUBJECT_ID)'),
-        #     x=alt.X('Death', axis=alt.Axis(labels=False, title='')),
-        #     color=alt.Color('Death', legend=None),
-        #     column='AGE_GROUP',
-        #     tooltip=['count(SUBJECT_ID)', 'AGE_GROUP', 'Death'],
-        #     # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
-        # )
-
-
-
-        # donut = base.mark_arc(innerRadius=50, outerRadius=90).encode(
-        #     theta=alt.Theta(aggregate="count", field='SUBJECT_ID', type='quantitative'),
-        #     color=alt.Color(field='Death'),
-        #     tooltip=['count(SUBJECT_ID)', 'Death']
-        # )
-
-        # raceChart = alt.Chart(df).mark_bar().encode(
-        #     x=alt.X("Death:N",sort='-x', axis=alt.Axis(labels=False, title='')),
-        #     y=alt.Y('count(SUBJECT_ID)', title = 'number of patients'),
-
-        #     color = alt.Color("Death:N"),
-        #     column = alt.Column('ETHNICITY')
-        # ).properties(
-        #     width=200
-        # )
-
-        # raceChart1 = alt.Chart(df).mark_bar().encode(
-        #     y=alt.Y('ETHNICITY:N', sort='-x'),
-        #     x=alt.X('count(SUBJECT_ID)'),
-        #     color=alt.Color('Death', legend=None),
-        #     row=alt.Row('Death', title='', spacing=5, header=alt.Header(labels=False)),
-        #     tooltip=['count(SUBJECT_ID)', 'ETHNICITY', 'Death'],
-        #     #row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
-        #  )
-
         raceChart = alt.Chart(df).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            x=alt.X('count(SUBJECT_ID)', sort='-x', title="Number of patients"),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title=None)),
             color=alt.Color('Survival:N'),
-            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('ETHNICITY', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
             tooltip=['count(SUBJECT_ID)', 'Survival'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
-            #title=f"Number of Patients with Diagnosis",
-            width=1000,
+            title=f"Ethnicity distribution",
+            width=WIDTH
         )
-        #st.altair_chart(raceChart1)
         st.altair_chart(raceChart)
 
     elif group_choice == 'Age Group': 
         ageChart = alt.Chart(df).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            x=alt.X('count(SUBJECT_ID)', sort='-x', title="Number of patients"),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title=None)),
             color=alt.Color('Survival:N'),
-            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('AGE_GROUP', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
             tooltip=['count(SUBJECT_ID)',  'Survival'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
-            #title=f"Number of Patients with Diagnosis",
-            width=1000,
+            title=f"Age distribution",
+            width=WIDTH
         )
-        #st.altair_chart(raceChart1)
         st.altair_chart(ageChart)
 
     elif group_choice == 'Insurance': 
         insuranceChart = alt.Chart(df).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            x=alt.X('count(SUBJECT_ID)', sort='-x', title="Number of patients"),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title=None)),
             color=alt.Color('Survival:N'),
-            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('INSURANCE', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
             tooltip=['count(SUBJECT_ID)',  'Survival'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
-            #title=f"Number of Patients with Diagnosis",
-            width=1000,
+            title=f"Insurance distribution",
+            width=WIDTH
+
         )
-        #st.altair_chart(raceChart1)
         st.altair_chart(insuranceChart)
 
-    elif group_choice == 'Language': 
-        languageChart = alt.Chart(df).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
-            color=alt.Color('Survival:N'),
-            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
-            row= alt.Row('LANGUAGE', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
-            tooltip=['count(SUBJECT_ID)',  'Survival'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
-          ).properties(
-            #title=f"Number of Patients with Diagnosis",
-            width=1000,
-        )
-        #st.altair_chart(raceChart1)
-        st.altair_chart(languageChart)
-    
     elif group_choice == 'Religion': 
         rdf = df[df.RELIGION.notnull()]
 
         religionChart = alt.Chart(rdf).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            x=alt.X('count(SUBJECT_ID)', sort='-x',  title="Number of patients"),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title=None)),
             color=alt.Color('Survival:N'),
             #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('RELIGION', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
             tooltip=['count(SUBJECT_ID)',  'Survival'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
-            #title=f"Number of Patients with Diagnosis",
-            width=1000,
+            title=f"Religion distribution",
+            width=WIDTH
         )
-        #st.altair_chart(raceChart1)
         st.altair_chart(religionChart)
 
 
     else:
         mdf = df[df.MARITAL_STATUS.notnull()]
-
         marriageChart = alt.Chart(mdf).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', sort='-x'),
-            y=alt.Y('Survival', axis=alt.Axis(labels=False, title='')),
+            x=alt.X('count(SUBJECT_ID)', sort='-x',  title="Number of patients"),
+            y=alt.Y('Survival', axis=alt.Axis(labels=False, title=None)),
             color=alt.Color('Survival:N'),
-            #row = alt.Row('SHORT_TITLE', header=alt.Header(labelAngle=0))
             row= alt.Row('MARITAL_STATUS', header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left')),
             tooltip=['count(SUBJECT_ID)',  'Survival'],
-            # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
           ).properties(
-            #title=f"Number of Patients with Diagnosis",
-            width=1000,
+            title=f"Marital status distribution",
+            width=WIDTH
         )
 
-        #st.altair_chart(raceChart1)
         st.altair_chart(marriageChart)
 
-        # bar1 = base.mark_bar().encode(
-        #     y=alt.Y('count(SUBJECT_ID)'),
-        #     x=alt.X('AGE_GROUP'),
-        #     tooltip=['count(SUBJECT_ID)', 'AGE_GROUP'],
-        #     # column = alt.Column('AGE_GROUP', header = alt.Header(labelOrient = "bottom"))
-        # ).properties(
-        #     width=500
-        # )
-
-        # bar2 = base.mark_bar().encode(
-        #     y=alt.Y('ETHNICITY', sort='-x'),
-        #     x=alt.X('count(SUBJECT_ID)'),
-        #     tooltip=['count(SUBJECT_ID)', 'ETHNICITY'],
-        #     # row = alt.Row('ETHNICITY', header = alt.Header(labelOrient = "bottom"))
-        # ).properties(
-        #     width=500
-        # )
-
-
-
-    # with col1:
-    #     st.altair_chart(bar1)
-    # with col2:
-    #     st.altair_chart(bar2)
-
-    # if group_choice != 'None':
-    #     donut = donut.properties(
-    #             title="Proportion of expired patients in gender",
-    #             width=400
-    #         )
-    #     with col3:
-    #         st.altair_chart(donut)

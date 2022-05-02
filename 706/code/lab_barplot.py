@@ -11,10 +11,11 @@ def app():
 
     # combined = lab_df.merge (item, on ='ITEMID', how = 'left')
 
-    st.write("## Abnormal Lab frequency")
-
+    st.write("## Lab and diagnosis frequency")
+    st.write("If you'd like to compare the survival status frequency distribution of a few different lab tests, use this visualization page. We also have a page for visualizing diagnoses. We separated them in consideration of the computation time.")
+    st.write("The results can get a little delayed because we are querying from a record with around 3.2 million conducted lab tests.")
     # with st.sidebar:
-    lab_chosen_item = st.multiselect('Choose lab',item.LABEL.unique(),
+    lab_chosen_item = st.multiselect('Add lab tests of interest',item.LABEL.unique(),
                                       default=['Red Blood Cells','RDW','pO2','Hemoglobin','Free Calcium','PTT'])
 
     st.markdown("""---""")
@@ -26,10 +27,11 @@ def app():
 
     barchart = alt.Chart(subset).mark_bar().encode(
             x=alt.X('count(SUBJECT_ID)', title = 'number of patients'),
-            y=alt.Y("Survival:N",sort='-x', title = 'lab conducted', axis=alt.Axis(labels=False, title = '')),
+            y=alt.Y("Survival:N",sort='-x', title = 'Lab tests', axis=alt.Axis(labels=False, title = '')),
             color = alt.Color("Survival:N"),
-            row = alt.Row('LABEL', title = 'lab conducted')
+            row = alt.Row('LABEL', title = 'Lab tests'),
+            tooltip=['count(SUBJECT_ID)',  'Survival'],
         ).properties(
-            width=1000
+            width=800
         )
     st.altair_chart(barchart)
