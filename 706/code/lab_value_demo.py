@@ -12,7 +12,7 @@ def app():
     icu_labs = pd.read_csv('706/data/icuvalue_demo.csv')
 
     labs = list(icu_labs.LABEL.unique())
-    default_ix = labs.index('Cholesterol, Total')
+    default_ix = labs.index('Albumin')
     option = st.selectbox(
          'Select a lab test of interest here',
          labs,
