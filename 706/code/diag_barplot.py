@@ -54,7 +54,7 @@ def app():
     )
 
     chart1 = alt.Chart(subset).transform_joinaggregate (
-        totalPeoople = subset.shape[0],
+        totalPeople = subset.shape[0],
     ).transform_calculate (
         percents = 'datum.count(SUBJECT_ID) / datum.totalPeople'
     ).mark_rect().encode(
