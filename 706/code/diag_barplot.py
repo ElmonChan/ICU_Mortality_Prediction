@@ -54,11 +54,11 @@ def app():
     )
 
     chart1 = alt.Chart(subset).mark_rect().encode(
-        x=alt.X('sum(percents)', title = 'Number of patients'),
+        x=alt.X('sum(percents)', title = 'Percentage of records'),
         #y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
         y=alt.Y("Survival:N",sort='-x', title = 'Diagnoses', axis=alt.Axis(labels=False, title='')),
         color = alt.Color("Survival:N"),
-        tooltip=['count(SUBJECT_ID)',  'Survival'],
+        tooltip=['Survival', alt.Tooltip('sum(percents):Q', format = "percentage , .2f")],
         row = alt.Row('SHORT_TITLE', title="Diagnosis distrubition", header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left'))
 
     ).properties(

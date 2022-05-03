@@ -26,7 +26,7 @@ def app():
     # subset = combined
 
     barchart = alt.Chart(subset).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', title = 'Number of patients'),
+            x=alt.X('count(SUBJECT_ID)', title = 'Number of records'),
             y=alt.Y("Survival:N",sort='-x', title = 'Lab tests', axis=alt.Axis(labels=False, title = '')),
             color = alt.Color("Survival:N"),
             row = alt.Row('LABEL', title = 'Lab tests'),
