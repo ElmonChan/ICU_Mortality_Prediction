@@ -18,6 +18,12 @@ def app():
     df['Survival'] = df.apply (lambda row: label_death(row), axis=1)
 
 
+
+    #totalSurvived = len(df.loc[df.Survival.eq('Survived')])
+    #totalExpired = len(df.loc[df.Survival.eq('Expired')])
+
+
+
     short_titles = [
         "Hypertension NOS",
         "Depressive disorder NEC",
@@ -47,6 +53,24 @@ def app():
         width=800,
     )
 
-    st.altair_chart(chart,)
+    chart1 = alt.Chart(subset).transform_joinaggregate (
+        totalPeople = subset.shape[0],
+    ).transform_calculate (
+        percents = 'datum.count(SUBJECT_ID) / datum.totalPeople'
+    ).mark_rect().encode(
+        x=alt.X('percents', title = 'percentage'),
+        #y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
+        y=alt.Y("Survival:N",sort='-x', title = 'Diagnoses', axis=alt.Axis(labels=False, title='')),
+        color = alt.Color("Survival:N"),
+        tooltip=['count(SUBJECT_ID)',  'Survival'],
+        row = alt.Row('SHORT_TITLE', title="Diagnosis distrubition", header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left'))
+
+    ).properties(
+        #title=f"Number of Patients with Diagnosis",
+        width=800,
+    )
+
+
+    st.altair_chart(chart1,)
 
 
