@@ -59,7 +59,7 @@ def app():
         y=alt.Y("Survival:N",sort='-x', title = 'Diagnoses', axis=alt.Axis(labels=False, title='')),
         color = alt.Color("Survival:N"),
         #alt.Tooltip('sum(percents):Q', format = "percentage , .2f"
-        tooltip=['Survival', alt.Tooltip("sum(percents)", format = ",.2f")],
+        tooltip=['Survival', alt.Tooltip("sum(percents)", format = ",.2f", title = 'percentage')],
         row = alt.Row('SHORT_TITLE', title="Diagnosis distrubition", header=alt.Header(labelAngle=0, labelAlign='left', titleOrient='top', labelOrient='left'))
 
     ).properties(
