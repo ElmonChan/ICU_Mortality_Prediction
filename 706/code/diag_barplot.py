@@ -35,7 +35,7 @@ def app():
 
 
     chart = alt.Chart(subset).mark_rect().encode(
-        x=alt.X('count(SUBJECT_ID)', title = 'Number of records'),
+        x=alt.X('count(SUBJECT_ID)', title = 'Number of patients'),
         #y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
         y=alt.Y("Survival:N",sort='-x', title = 'Diagnoses', axis=alt.Axis(labels=False, title='')),
         color = alt.Color("Survival:N"),
