@@ -11,7 +11,7 @@ def app():
 
     # combined = lab_df.merge (item, on ='ITEMID', how = 'left')
 
-    st.write("## Lab and diagnosis frequency")
+    st.write("## Abnormal Lab frequency")
     st.write("If you'd like to compare the survival status frequency distribution of a few different lab tests, use this visualization page. We also have a page for visualizing diagnoses. We separated them in consideration of the computation time.")
     st.write("The results can get a little delayed because we are querying from a record with around 3.2 million conducted lab tests.")
     # with st.sidebar:
@@ -26,7 +26,7 @@ def app():
     # subset = combined
 
     barchart = alt.Chart(subset).mark_bar().encode(
-            x=alt.X('count(SUBJECT_ID)', title = 'number of records'),
+            x=alt.X('count(SUBJECT_ID)', title = 'Number of patients'),
             y=alt.Y("Survival:N",sort='-x', title = 'Lab tests', axis=alt.Axis(labels=False, title = '')),
             color = alt.Color("Survival:N"),
             row = alt.Row('LABEL', title = 'Lab tests'),
