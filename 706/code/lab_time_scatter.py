@@ -7,6 +7,9 @@ from sklearn import preprocessing
 
 def app():
     st.write("## Lab results Before ICU admission")
+    st.write("This page help explore relationship between the lab result trend and the deteriorating physical condition. \
+              We assume that ICU admission generally represent the worsening of condition. So we visualize the lab value \
+              shortly before ICU admission")
 
     icu_labs = pd.read_csv('706/data/icu_lab.csv')
 
