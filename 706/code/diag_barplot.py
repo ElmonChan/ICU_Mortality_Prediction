@@ -8,7 +8,7 @@ def app():
 
     st.markdown("""---""")
 
-    df = pd.read_csv("706/data/diags_new.csv")  # read a CSV file inside the 'data" folder next to 'app.py'
+    df = pd.read_csv("706/data/diags.csv")  # read a CSV file inside the 'data" folder next to 'app.py'
 
     def label_death (row):
        if row['EXPIRE_FLAG'] == 1 :
@@ -53,12 +53,8 @@ def app():
         width=800,
     )
 
-    chart1 = alt.Chart(subset).transform_joinaggregate (
-        totalPeople = subset.shape[0],
-    ).transform_calculate (
-        percents = 'datum.count(SUBJECT_ID) / datum.totalPeople'
-    ).mark_rect().encode(
-        x=alt.X('percents', title = 'percentage'),
+    chart1 = alt.Chart(subset).mark_rect().encode(
+        x=alt.X('sum(percents)', title = 'Number of patients'),
         #y=alt.Y("SHORT_TITLE", title = 'Diagnosis'),
         y=alt.Y("Survival:N",sort='-x', title = 'Diagnoses', axis=alt.Axis(labels=False, title='')),
         color = alt.Color("Survival:N"),
@@ -69,6 +65,8 @@ def app():
         #title=f"Number of Patients with Diagnosis",
         width=800,
     )
+
+    
 
 
     st.altair_chart(chart1,)
