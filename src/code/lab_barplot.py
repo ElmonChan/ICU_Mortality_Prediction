@@ -5,8 +5,8 @@ import pandas as pd
 
 ################# Lab barplot ######################
 def app():
-    item = pd.read_csv('706/data/labItemFilter.csv')
-    lab_df = pd.read_csv('706/data/labPatientFilter.csv')
+    item = pd.read_csv('src/data/labItemFilter.csv')
+    lab_df = pd.read_csv('src/data/labPatientFilter.csv')
     lab_df['Survival'] = lab_df['EXPIRE_FLAG'].map({0: 'Survived', 1: 'Expired'})
 
     # combined = lab_df.merge (item, on ='ITEMID', how = 'left')

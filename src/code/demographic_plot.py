@@ -15,7 +15,7 @@ def app():
     st.markdown("""---""")
 
     ################# Demographic ######################
-    df = pd.read_csv("706/data/demographic_new.csv")
+    df = pd.read_csv("src/data/demographic_new.csv")
     df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('/')[0])
     df['ETHNICITY'] = df['ETHNICITY'].apply(lambda x: x.split('-')[0])
     df.replace('UNALBE', 'UNKNOWN')

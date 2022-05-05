@@ -9,7 +9,7 @@ def app():
     st.write("## Demographics of patients with abnormal lab values")
     st.write("This page allows exploration of demographics (age group and gender) for selected patients with abnormal lab values.")
 
-    icu_labs = pd.read_csv('706/data/icuvalue_demo.csv')
+    icu_labs = pd.read_csv('src/data/icuvalue_demo.csv')
 
     labs = list(icu_labs.LABEL.unique())
     default_ix = labs.index('Albumin')

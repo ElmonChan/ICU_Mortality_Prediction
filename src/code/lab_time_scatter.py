@@ -9,7 +9,7 @@ def app():
     st.write("## Lab results before ICU admissions")
     st.write("We hypothesized that being admitted to the ICU is a consequence of worsening conditions. This visualization is therefore created to help identify the relationship between lab values and ICU admissions (and survival status).")
 
-    icu_labs = pd.read_csv('706/data/icu_lab.csv')
+    icu_labs = pd.read_csv('src/data/icu_lab.csv')
 
     labs = list(icu_labs.LABEL.unique())
     default_ix = labs.index('Albumin')
